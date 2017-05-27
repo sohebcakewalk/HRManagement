@@ -810,6 +810,11 @@
     <script src="../Lib/Js/admin.js"></script>
     <script src="../Lib/Js/pages/index.js"></script>
 
+    <!-- Jquery Validation Plugin Css -->
+    <script src="../Lib/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <script src="../Lib/Js/pages/forms/form-validation.js"></script>
+
     <%--<!-- Demo Js -->
     <script src="../Lib/Js/demo.js"></script>--%>
 </body>
