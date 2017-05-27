@@ -11,20 +11,20 @@
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="../Resources/Css/Roboto.css" rel="stylesheet" />
-    <link href="../Resources/Css/MaterialIcons.css" rel="stylesheet" />
+    <link href="../Lib/Css/Roboto.css" rel="stylesheet" />
+    <link href="../Lib/Css/MaterialIcons.css" rel="stylesheet" />
 
     <!-- Bootstrap Core Css -->
-    <link href="../Resources/Plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
     <!-- Waves Effect Css -->
-    <link href="../Resources/Plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="../Resources/Plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="../Resources/Css/style.css" rel="stylesheet" />
+    <link href="../Lib/Css/style.css" rel="stylesheet" />
 </head>
 
 <body class="fp-page">
@@ -60,20 +60,20 @@
     </div>
 
     <!-- Jquery Core Js -->    
-    <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
+    <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="../Resources/Plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../Lib/Plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="../Resources/Plugins/node-waves/waves.js"></script>
+    <script src="../Lib/Plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src="../Resources/Plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Custom Js -->
-    <script src="../Resources/Js/admin.js"></script> 
-    <script src="../Resources/Js/pages/examples/forgot-password.js"></script>        
+    <script src="../Lib/Js/admin.js"></script> 
+    <script src="../Lib/Js/pages/examples/forgot-password.js"></script>        
 </body>
 
 </html>
