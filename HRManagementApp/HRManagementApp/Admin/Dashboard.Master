@@ -23,10 +23,32 @@
     <!-- Animation Css -->
     <link href="../Lib/Plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Colorpicker Css -->
+    <link href="../Lib/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="../Lib/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="../Lib/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="../Lib/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="../Lib/plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="../Lib/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="../Lib/Css/style.css" rel="stylesheet" />
+
     <!-- Bootstrap Select Css -->
     <link href="../Lib/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../Lib/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../Lib/Css/themes/all-themes.css" rel="stylesheet" />
