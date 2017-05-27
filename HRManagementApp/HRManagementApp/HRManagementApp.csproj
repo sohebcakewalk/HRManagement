@@ -74,6 +74,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="app.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
@@ -311,6 +312,7 @@
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Lib\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
+    <Content Include="Admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -6828,8 +6830,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Dashboard.Master.cs">
-      <DependentUpon>Dashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Dashboard.Master</DependentUpon>
     </Compile>
     <Compile Include="Admin\Dashboard.Master.designer.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
@@ -6840,6 +6842,13 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EmployeeProjectManagement.aspx.cs">
+      <DependentUpon>EmployeeProjectManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EmployeeProjectManagement.aspx.designer.cs">
+      <DependentUpon>EmployeeProjectManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

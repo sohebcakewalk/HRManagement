@@ -808,8 +808,16 @@
         </div>
     </section>
 
+   
+
     <!-- Jquery Core Js -->
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+         $(document).ready(function () {
+             $('#txtDate').bootstrapMaterialDatePicker({ time: false});
+         });
+    </script> 
 
     <!-- Bootstrap Core Js -->
     <script src="../Lib/Plugins/bootstrap/js/bootstrap.js"></script>
@@ -842,6 +850,12 @@
 
     <!-- Bootstrap Tags Input Plugin Js -->
     <script src="../Lib/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="../Lib/Plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="../Lib/Plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <%--<!-- Demo Js -->
     <script src="../Lib/Js/demo.js"></script>--%>
