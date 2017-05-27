@@ -834,6 +834,12 @@
     <script src="../Lib/Js/admin.js"></script>
     <script src="../Lib/Js/pages/index.js"></script>
 
+
+    <!-- Jquery Validation Plugin Css -->
+    <script src="../Lib/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <script src="../Lib/Js/pages/forms/form-validation.js"></script>
+
     <!-- Bootstrap Tags Input Plugin Js -->
     <script src="../Lib/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
