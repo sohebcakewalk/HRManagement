@@ -12,20 +12,20 @@
     <!-- Google Fonts -->
     <%--<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />--%>
-    <link href="../Resources/Css/Roboto.css" rel="stylesheet" />
-    <link href="../Resources/Css/MaterialIcons.css" rel="stylesheet" />
+    <link href="../Lib/Css/Roboto.css" rel="stylesheet" />
+    <link href="../Lib/Css/MaterialIcons.css" rel="stylesheet" />
 
     <!-- Bootstrap Core Css -->    
-    <link href="../Resources/Plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
     <!-- Waves Effect Css -->
-    <link href="../Resources/Plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="../Resources/Plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-   <link href="../Resources/Css/style.css" rel="stylesheet" />
+   <link href="../Lib/Css/style.css" rel="stylesheet" />
 </head>
 
 <body class="signup-page">
@@ -37,14 +37,22 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST">
+                <form id="sign_up demo-masked-input" method="POST">
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namesurname" placeholder="Name Surname" required autofocus>
+                            <input type="text" class="form-control" name="namefirstname" placeholder="First Name" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="namelastname" placeholder="Last Name" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -71,6 +79,26 @@
                             <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <%--<b>Phone Number</b>--%>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">phone</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control mobile-phone-number" name="namecontact"  placeholder="Contact">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="radio" name="gender" id="male" class="with-gap">
+                        <label for="male">Male</label>
+
+                        <input type="radio" name="gender" id="female" class="with-gap">
+                        <label for="female" class="m-l-20">Female</label>
+                    </div>
                     <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
                         <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
@@ -85,16 +113,22 @@
     </div>
 
     <!-- Jquery Core Js -->
-    <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
+    <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core Js -->
-    <script src="../Resources/Plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../Lib/Plugins/bootstrap/js/bootstrap.js"></script>
     <!-- Waves Effect Plugin Js -->
-    <script src="../Resources/Plugins/node-waves/waves.js"></script>
+    <script src="../Lib/Plugins/node-waves/waves.js"></script>
     <!-- Validation Plugin Js -->
-    <script src="../Resources/Plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
     <!-- Custom Js -->
-    <script src="../Resources/Js/admin.js"></script>    
-    <script src="../Resources/Js/pages/examples/sign-up.js"></script>    
+    <script src="../Lib/Js/admin.js"></script>    
+    <script src="../Lib/Js/pages/examples/sign-up.js"></script>  
+    
+<%--    <!-- Input Mask Plugin Js -->
+    <script src="../Lib/Plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="../Lib/Plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script> --%>   
 </body>
 
 </html>
