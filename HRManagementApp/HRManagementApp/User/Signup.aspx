@@ -28,7 +28,7 @@
    <link href="../Resources/Css/style.css" rel="stylesheet" />
 </head>
 
-<body class="signup-page">
+<body class="signup-page" >
 
     <div class="signup-box">
         <div class="logo">
@@ -37,7 +37,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST">
+                <form id="sign_up">
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -86,6 +86,7 @@
 
     <!-- Jquery Core Js -->
     <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <!-- Bootstrap Core Js -->
     <script src="../Resources/Plugins/bootstrap/js/bootstrap.js"></script>
     <!-- Waves Effect Plugin Js -->
@@ -94,7 +95,16 @@
     <script src="../Resources/Plugins/jquery-validation/jquery.validate.js"></script>
     <!-- Custom Js -->
     <script src="../Resources/Js/admin.js"></script>    
-    <script src="../Resources/Js/pages/examples/sign-up.js"></script>    
+    <script src="../Resources/Js/pages/examples/sign-up.js"></script> 
+    <script src="../app.js"></script>
+       <script src="user.js"></script>
+    <script src="../Services/service.js"></script>
+     <script>
+        let objUser = new User();      
+         objUser.signUp();
+        
+
+    </script>
 </body>
 
 </html>

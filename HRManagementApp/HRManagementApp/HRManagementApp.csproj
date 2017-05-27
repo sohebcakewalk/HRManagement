@@ -43,10 +43,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -65,6 +74,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.js" />
+    <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <Content Include="Resources\Plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Resources\Plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
@@ -178,6 +189,13 @@
     <Content Include="Resources\Plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Resources\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Resources\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
+    <EntityDeploy Include="Services\HREntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HREntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Services\HREntity.edmx.diagram">
+      <DependentUpon>HREntity.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3431,9 +3449,22 @@
     <Content Include="Resources\Plugins\waitme\waitMe.js" />
     <Content Include="Resources\Plugins\waitme\waitMe.min.css" />
     <Content Include="Resources\Plugins\waitme\waitMe.min.js" />
+    <Content Include="Services\HREntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HREntity.edmx</DependentUpon>
+      <LastGenOutput>HREntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Services\HREntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HREntity.edmx</DependentUpon>
+      <LastGenOutput>HREntity.cs</LastGenOutput>
+    </Content>
+    <Content Include="Services\service.js" />
+    <Content Include="Services\Services.asmx" />
     <Content Include="User\ForgotPassword.aspx" />
     <Content Include="User\Signin.aspx" />
     <Content Include="User\Signup.aspx" />
+    <Content Include="User\user.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3445,6 +3476,83 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Attendance.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Branch.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Candidate.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Client.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EmployeeProjectManagement.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\EmployeeSalary.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\HREntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HREntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\HREntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\HREntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HREntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\interview.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\JobsAppliedFor.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\leaveapplication.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ModulesInRole.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\performanceappraisal.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Project.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ProjectModule.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Services.asmx.cs">
+      <DependentUpon>Services.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\Skill.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UiModule.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\User.cs" />
+    <Compile Include="Services\UserGrade.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UserManagement.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UserRole.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UserSkillset.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="User\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3470,6 +3578,9 @@
   <ItemGroup>
     <Folder Include="Candidate\" />
     <Folder Include="Resources\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
