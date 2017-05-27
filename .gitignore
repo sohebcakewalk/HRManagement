@@ -1,0 +1,7 @@
+# Exclude DLL files.
+HRManagementApp/packages
+HRManagementApp/.vs
+HRManagementApp/HRManagementApp/obj
+HRManagementApp/HRManagementApp/bin
+#HRManagement/HRManagementApp/node_modules
+#HRManagementApp/HRManagementApp/Web*.config
