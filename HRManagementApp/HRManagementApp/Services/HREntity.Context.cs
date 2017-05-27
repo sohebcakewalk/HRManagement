@@ -44,6 +44,5 @@ namespace HRManagementApp.Services
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserSkillset> UserSkillsets { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<Task> Tasks { get; set; }
     }
 }
