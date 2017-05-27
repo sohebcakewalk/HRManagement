@@ -37,24 +37,32 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up demo-masked-input" method="POST">
+                <form id="sign_up" method="POST">
                     <div class="msg">Register a new membership</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="namefirstname" placeholder="First Name" required autofocus>
+
+                    <div class="row">
+                    <div class="col-md-6" style="margin-bottom: 0px !important;">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="namefirstname" placeholder="First Name" required autofocus>
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="namelastname" placeholder="Last Name" required autofocus>
+                    <div class="col-md-6" style="margin-bottom: 0px !important;">
+                        <div class="input-group">
+                            <%--<span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>--%>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="namelastname" placeholder="Last Name" required>
+                            </div>
                         </div>
                     </div>
+                        </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
@@ -79,16 +87,13 @@
                             <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <%--<b>Phone Number</b>--%>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">phone</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control mobile-phone-number" name="namecontact"  placeholder="Contact">
-                            </div>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">phone</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="namecontact" minlength="10"  placeholder="Contact" required>
                         </div>
                     </div>
 
@@ -122,13 +127,7 @@
     <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
     <!-- Custom Js -->
     <script src="../Lib/Js/admin.js"></script>    
-    <script src="../Lib/Js/pages/examples/sign-up.js"></script>  
-    
-<%--    <!-- Input Mask Plugin Js -->
-    <script src="../Lib/Plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
-
-    <!-- Bootstrap Tags Input Plugin Js -->
-    <script src="../Lib/Plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script> --%>   
+    <script src="../Lib/Js/pages/examples/sign-up.js"></script>     
 </body>
 
 </html>
