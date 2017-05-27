@@ -17,34 +17,59 @@ namespace HRManagementApp.Services
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-     [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class Services : System.Web.Services.WebService
     {
-       [WebMethod]       
+        [WebMethod]
         public string getUser()
         {
-            
+
             return "sumit";
         }
         [WebMethod(EnableSession = true)]
         public bool ValidateUser(string userName, string password)
         {
             Boolean flag = false;
-            using (HREntities db = new HREntities()) {               
-                var user = db.Candidates.Where(x => x.emialid == userName && x.password == password).ToList();
-                if (user.Count > 0)
+            using (HREntities db = new HREntities())
+            {
+                try
                 {
-                    flag = true;
-                    Session["user"] = user;
+                    var user = db.Candidates.Where(x => x.emialid == userName && x.password == password).ToList();
+                    if (user.Count > 0)
+                    {
+                        flag = true;
+                        Session["user"] = user;
+                    }
                 }
-            }          
+                catch (Exception ex)
+                {
+
+                }
+            }
             return flag;
         }
         [WebMethod]
-        public string createUser(string name, string email, string password)
+        public bool createUser(string fname, string lname, string email, string password, string phNumber, string gender)
         {
-           
-            return name;
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var Candidate = db.Set<Candidate>();
+                    Candidate.Add(new Candidate { firstname = fname, lastname = lname, emialid = email, password = password, contact = phNumber, gender = gender });
+                    db.SaveChanges();
+                    flag = true;
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+            return flag;
         }
     }
 }

@@ -98,10 +98,10 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="radio" name="gender" id="male" class="with-gap">
+                        <input type="radio" name="gender" id="male" value="male" class="with-gap">
                         <label for="male">Male</label>
 
-                        <input type="radio" name="gender" id="female" class="with-gap">
+                        <input type="radio" name="gender" id="female" value="female" class="with-gap">
                         <label for="female" class="m-l-20">Female</label>
                     </div>
                     <div class="form-group">
