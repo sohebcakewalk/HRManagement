@@ -27,24 +27,51 @@ namespace HRManagementApp.Services
             return "sumit";
         }
         [WebMethod(EnableSession = true)]
-        public bool ValidateUser(string userName, string password)
+        public object ValidateUser(string userName, string password)
         {
-            Boolean flag = false;
-            using (HREntities db = new HREntities()) {               
-                var user = db.Candidates.Where(x => x.emialid == userName && x.password == password).ToList();
-                if (user.Count > 0)
-                {
-                    flag = true;
-                    Session["user"] = user;
+            object user;
+            using (HREntities db = new HREntities()) {
+                user = db.Candidates.Where(x => x.emialid == userName && x.password == password).Select(x => x.id).SingleOrDefault();
+                
+                if (user != null) {
+                    Session["UserID"] = user;
                 }
             }          
-            return flag;
+            return user;
         }
         [WebMethod]
         public string createUser(string name, string email, string password)
         {
-           
             return name;
+        }
+        [WebMethod]
+        public object getCandidate(int id)
+        {
+            object candidate;
+            using (HREntities db = new HREntities())
+            {
+                candidate = db.Candidates.Where(x => x.id == id).ToList();
+                
+            }
+            return candidate;
+        }
+        [WebMethod(EnableSession = true)]
+        public int updateCandidate(string skillset, int experience, string biodata)
+        {
+            int userId = Convert.ToInt16(HttpContext.Current.Session["UserID"].ToString());
+            Candidate candidate = new Candidate();
+            using (HREntities db = new HREntities())
+            {
+                
+                candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
+                if (candidate != null) {
+                    candidate.skillset = skillset;
+                    candidate.overallexperience = experience;
+                    candidate.biodatapath = biodata;
+                }
+                db.SaveChanges();
+            }
+            return userId;
         }
     }
 }

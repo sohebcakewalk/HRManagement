@@ -74,6 +74,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\candidate.js" />
+    <Content Include="Admin\CandidateDetails.aspx" />
     <Content Include="app.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
@@ -311,6 +313,7 @@
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Lib\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
+    <Content Include="Admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -6827,6 +6830,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\CandidateDetails.aspx.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CandidateDetails.aspx.designer.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Dashboard.Master.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6920,7 +6930,6 @@
     <Compile Include="Services\UiModule.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\User.cs" />
     <Compile Include="Services\UserGrade.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
@@ -6956,7 +6965,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Candidate\" />
     <Folder Include="Lib\Images\" />
   </ItemGroup>
   <ItemGroup>

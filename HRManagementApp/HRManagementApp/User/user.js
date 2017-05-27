@@ -10,7 +10,10 @@
             let objService = new Service();
             let objajax = objService.ajax("ValidateUser", objService.POST, `{userName: "${arrData[0].value}" ,password:"${arrData[1].value}"}`)
             objajax.done(function (response) {
-                alert(response.d)
+                //alert('Success')
+            });
+            objajax.error(function (response) {
+                //alert('Error')
             });
             e.preventDefault();
             return false;
