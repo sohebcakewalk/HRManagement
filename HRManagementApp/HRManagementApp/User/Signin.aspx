@@ -37,7 +37,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form id="sign_in" >
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -78,6 +78,11 @@
     </div>
 
     <!-- Jquery Core Js -->    
+       <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script> 
+    <script type="text/javascript">
+        var jQuery3 = $.noConflict(true);
+    </script>
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->    
@@ -90,8 +95,19 @@
     <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Custom Js -->    
+    <script src="../Resources/Js/admin.js"></script>    
+    <script src="../Resources/Js/pages/examples/sign-in.js"></script>
+    <script src="user.js"></script>
+    <script src="../Services/service.js"></script>
+    <script>
+        let objUser = new User();      
+        objUser.login();
+        
+
+    </script>
     <script src="../Lib/Js/admin.js"></script>    
     <script src="../Lib/Js/pages/examples/sign-in.js"></script>
 </body>
+
 
 </html>
