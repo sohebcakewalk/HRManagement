@@ -48,6 +48,28 @@ namespace HRManagementApp.Services
             }
             return flag;
         }
+        [WebMethod(EnableSession = true)]
+        public bool ValidateAdminUser(string userName, string password)
+        {
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var user = db.UserManagements.Where(x => x.email == userName && x.password == password).ToList();
+                    if (user.Count > 0)
+                    {
+                        flag = true;
+                        Session["user"] = user;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return flag;
+        }
         [WebMethod]
         public bool createUser(string fname, string lname, string email, string password, string phNumber, string gender)
         {
@@ -61,6 +83,30 @@ namespace HRManagementApp.Services
                     db.SaveChanges();
                     flag = true;
 
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+            return flag;
+        }
+
+
+        [WebMethod]
+        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        {
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var Candidate = db.Set<UserManagement>();
+                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender });
+                    db.SaveChanges();
+                    flag = true;
                 }
                 catch (Exception ex)
                 {

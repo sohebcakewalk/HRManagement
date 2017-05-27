@@ -74,7 +74,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\adminUser.js" />
+    <Content Include="Admin\Signup.aspx" />
+    <Content Include="Admin\UserSignup.aspx" />
     <Content Include="app.js" />
+    <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <Content Include="Resources\Plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
@@ -6848,6 +6852,20 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Signup.aspx.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Signup.aspx.designer.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserSignup.aspx.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserSignup.aspx.designer.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
