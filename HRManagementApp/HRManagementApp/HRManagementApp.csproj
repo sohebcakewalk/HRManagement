@@ -311,6 +311,7 @@
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Lib\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
+    <Content Include="Admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

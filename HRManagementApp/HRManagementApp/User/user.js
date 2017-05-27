@@ -5,13 +5,16 @@
     }
 
     login() {
+        const me = this;
+        //me.fillByMemory();
         $('#sign_in').on('submit', (e, data) => {
             if ($('#sign_in').valid()) {
                 let arrData = $("#sign_in").serializeArray();
                 let objService = new Service();
                 let objajax = objService.ajax("ValidateUser", objService.POST, `{userName: "${arrData[0].value}" ,password:"${arrData[1].value}"}`)
                 objajax.done(function (response) {
-                    alert(response.d)
+                    //me.rememberMe(arrData[0].value, arrData[1].value);
+                    alert(response.d);
                 });
             }
             e.preventDefault();
@@ -19,6 +22,7 @@
         })
     }
     signUp() {
+        
         $('#sign_up').on('submit', (e, data) => {
             if ($('#sign_up').valid()) {
 
@@ -37,5 +41,24 @@
         })
 
     }
+    rememberMe(id, password) {
+        if ($('#rememberme').is(':checked')) {
+            // save username and password
+            localStorage.usrname = id;
+            localStorage.pass = password;            
+        } else {
+            localStorage.usrname = '';
+            localStorage.pass = '';            
+        }   
+
+}
+
+ fillByMemory() {
+     if (!!localStorage.usrname)
+         $('#username').val(localStorage.usrname);
+
+     if (!!localStorage.pass)
+         $('#password').val(localStorage.pass);
+}
 
 }
