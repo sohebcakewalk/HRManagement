@@ -1,4 +1,4 @@
-# ES6TS
+# HRManagementApp
 
 npm init
 

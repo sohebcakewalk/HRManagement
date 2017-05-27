@@ -1,5 +1,6 @@
 # Exclude DLL files.
 HRManagementApp/packages
+.vs
 HRManagementApp/.vs
 HRManagementApp/HRManagementApp/obj
 HRManagementApp/HRManagementApp/bin
