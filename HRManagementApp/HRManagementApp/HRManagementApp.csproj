@@ -74,9 +74,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Js\tasks.js" />
+    <Content Include="Admin\Tasks.aspx" />
     <Content Include="app.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
+    <Content Include="require.js" />
     <Content Include="Resources\Plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Resources\Plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="Resources\Plugins\bootstrap-material-datetimepicker\font\Material-Design-Icons.eot" />
@@ -311,6 +314,7 @@
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Lib\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
+    <Content Include="Admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -6848,6 +6852,13 @@
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6855,6 +6866,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Attendance.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
@@ -6892,6 +6904,9 @@
     <Compile Include="Services\interview.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\jobPost.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\JobsAppliedFor.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
@@ -6915,6 +6930,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\Skill.cs">
+      <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Task.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\UiModule.cs">

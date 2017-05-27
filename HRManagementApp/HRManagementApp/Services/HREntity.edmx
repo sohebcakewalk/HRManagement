@@ -102,6 +102,20 @@
           <Property Name="createddate" Type="date" />
           <Property Name="branchId" Type="bigint" />
         </EntityType>
+        <EntityType Name="jobPosts">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="jobId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jobTilte" Type="varchar" MaxLength="350" />
+          <Property Name="skills" Type="varchar" MaxLength="500" />
+          <Property Name="noOfVacancies" Type="int" />
+          <Property Name="createDate" Type="smalldatetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isApproved" Type="bit" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="approvedBy" Type="bigint" />
+        </EntityType>
         <EntityType Name="JobsAppliedFor">
           <Key>
             <PropertyRef Name="id" />
@@ -258,6 +272,7 @@
           <EntitySet Name="EmployeeProjectManagement" EntityType="Self.EmployeeProjectManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeSalary" EntityType="Self.EmployeeSalary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="interview" EntityType="Self.interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobPosts" EntityType="Self.jobPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobsAppliedFor" EntityType="Self.JobsAppliedFor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="leaveapplication" EntityType="Self.leaveapplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModulesInRole" EntityType="Self.ModulesInRole" Schema="dbo" store:Type="Tables" />
@@ -530,6 +545,7 @@
           <EntitySet Name="UserSkillsets" EntityType="Self.UserSkillset" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Tasks" EntityType="HRModel.Task" />
+          <EntitySet Name="jobPosts" EntityType="HRModel.jobPost" />
         </EntityContainer>
         <EntityType Name="Task">
           <Key>
@@ -542,6 +558,20 @@
           <Property Name="timeTaken" Type="Int32" />
           <Property Name="userId" Type="Int64" />
           <Property Name="completedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="jobPost">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="jobId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jobTilte" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="skills" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="noOfVacancies" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isApproved" Type="Boolean" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="approvedBy" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -811,6 +841,21 @@
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="gitUrl" ColumnName="gitUrl" />
                 <ScalarProperty Name="taskId" ColumnName="taskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobPosts">
+            <EntityTypeMapping TypeName="HRModel.jobPost">
+              <MappingFragment StoreEntitySet="jobPosts">
+                <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="noOfVacancies" ColumnName="noOfVacancies" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="jobTilte" ColumnName="jobTilte" />
+                <ScalarProperty Name="jobId" ColumnName="jobId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

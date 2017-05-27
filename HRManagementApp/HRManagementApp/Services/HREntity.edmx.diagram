@@ -25,6 +25,7 @@
         <EntityTypeShape EntityType="HRModel.UserSkillset" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.Project" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.Task" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="HRModel.jobPost" Width="1.5" PointX="3.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
