@@ -58,16 +58,16 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="useid" Type="int" />
-          <Property Name="clientid" Type="int" />
-          <Property Name="projectid" Type="int" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="clientid" Type="bigint" />
+          <Property Name="projectid" Type="bigint" />
           <Property Name="modules" Type="nvarchar(max)" />
-          <Property Name="branchid" Type="int" />
+          <Property Name="branchid" Type="bigint" />
           <Property Name="position" Type="nvarchar" MaxLength="50" />
           <Property Name="estimatedclosedate" Type="date" />
           <Property Name="status" Type="nvarchar" MaxLength="50" />
-          <Property Name="updatedby" Type="int" />
+          <Property Name="updatedby" Type="bigint" />
           <Property Name="createddate" Type="date" />
         </EntityType>
         <EntityType Name="EmployeeSalary">
@@ -101,6 +101,21 @@
           <Property Name="remarks" Type="nvarchar(max)" />
           <Property Name="createddate" Type="date" />
           <Property Name="branchId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="jobPosts">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="jobId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jobTilte" Type="varchar" MaxLength="350" />
+          <Property Name="skills" Type="varchar" MaxLength="500" />
+          <Property Name="noOfVacancies" Type="int" />
+          <Property Name="createDate" Type="smalldatetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isApproved" Type="bit" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="approvedBy" Type="bigint" />
+          <Property Name="remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="JobsAppliedFor">
           <Key>
@@ -208,6 +223,7 @@
           </Key>
           <Property Name="gradeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="grade" Type="varchar" MaxLength="50" />
+          <Property Name="position" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="UserManagement">
           <Key>
@@ -224,7 +240,7 @@
           <Property Name="address1" Type="varchar" MaxLength="500" />
           <Property Name="address2" Type="varchar" MaxLength="500" />
           <Property Name="createDate" Type="smalldatetime" />
-          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
           <Property Name="roles" Type="varchar" MaxLength="250" />
           <Property Name="grade" Type="varchar" MaxLength="50" />
           <Property Name="gradeChangeDate" Type="smalldatetime" />
@@ -258,6 +274,7 @@
           <EntitySet Name="EmployeeProjectManagement" EntityType="Self.EmployeeProjectManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeSalary" EntityType="Self.EmployeeSalary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="interview" EntityType="Self.interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobPosts" EntityType="Self.jobPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobsAppliedFor" EntityType="Self.JobsAppliedFor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="leaveapplication" EntityType="Self.leaveapplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModulesInRole" EntityType="Self.ModulesInRole" Schema="dbo" store:Type="Tables" />
@@ -324,22 +341,6 @@
           <Property Name="country" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="location" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="createdDate" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="EmployeeProjectManagement">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="useid" Type="Int32" />
-          <Property Name="clientid" Type="Int32" />
-          <Property Name="projectid" Type="Int32" />
-          <Property Name="modules" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="branchid" Type="Int32" />
-          <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="estimatedclosedate" Type="DateTime" Precision="0" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="updatedby" Type="Int32" />
-          <Property Name="createddate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="EmployeeSalary">
           <Key>
@@ -458,29 +459,7 @@
           </Key>
           <Property Name="gradeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="UserManagement">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="dob" Type="DateTime" Precision="0" />
-          <Property Name="address1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="address2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="createDate" Type="DateTime" Precision="0" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="roles" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gradeChangeDate" Type="DateTime" Precision="0" />
-          <Property Name="registeredBy" Type="Int64" />
-          <Property Name="branchId" Type="Int64" />
-          <Property Name="reportingTo" Type="Int64" />
+          <Property Name="position" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -514,7 +493,6 @@
           <EntitySet Name="Branches" EntityType="Self.Branch" />
           <EntitySet Name="Candidates" EntityType="Self.Candidate" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="EmployeeProjectManagements" EntityType="Self.EmployeeProjectManagement" />
           <EntitySet Name="EmployeeSalaries" EntityType="Self.EmployeeSalary" />
           <EntitySet Name="interviews" EntityType="Self.interview" />
           <EntitySet Name="JobsAppliedFors" EntityType="Self.JobsAppliedFor" />
@@ -525,12 +503,29 @@
           <EntitySet Name="Skills" EntityType="Self.Skill" />
           <EntitySet Name="UiModules" EntityType="Self.UiModule" />
           <EntitySet Name="UserGrades" EntityType="Self.UserGrade" />
-          <EntitySet Name="UserManagements" EntityType="Self.UserManagement" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="UserSkillsets" EntityType="Self.UserSkillset" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="jobPosts" EntityType="HRModel.jobPost" />
           <EntitySet Name="Tasks" EntityType="HRModel.Task" />
+          <EntitySet Name="EmployeeProjectManagements" EntityType="HRModel.EmployeeProjectManagement" />
+          <EntitySet Name="UserManagements" EntityType="HRModel.UserManagement" />
         </EntityContainer>
+        <EntityType Name="jobPost">
+          <Key>
+            <PropertyRef Name="jobId" />
+          </Key>
+          <Property Name="jobId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jobTilte" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="skills" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="noOfVacancies" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isApproved" Type="Boolean" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="approvedBy" Type="Int64" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="taskId" />
@@ -542,6 +537,45 @@
           <Property Name="timeTaken" Type="Int32" />
           <Property Name="userId" Type="Int64" />
           <Property Name="completedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="EmployeeProjectManagement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="clientid" Type="Int64" />
+          <Property Name="projectid" Type="Int64" />
+          <Property Name="modules" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="branchid" Type="Int64" />
+          <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estimatedclosedate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="updatedby" Type="Int64" />
+          <Property Name="createddate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="UserManagement">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="address1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="address2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="roles" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gradeChangeDate" Type="DateTime" Precision="0" />
+          <Property Name="registeredBy" Type="Int64" />
+          <Property Name="branchId" Type="Int64" />
+          <Property Name="reportingTo" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -599,23 +633,6 @@
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeProjectManagements">
-            <EntityTypeMapping TypeName="HRModel.EmployeeProjectManagement">
-              <MappingFragment StoreEntitySet="EmployeeProjectManagement">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="useid" ColumnName="useid" />
-                <ScalarProperty Name="clientid" ColumnName="clientid" />
-                <ScalarProperty Name="projectid" ColumnName="projectid" />
-                <ScalarProperty Name="modules" ColumnName="modules" />
-                <ScalarProperty Name="branchid" ColumnName="branchid" />
-                <ScalarProperty Name="position" ColumnName="position" />
-                <ScalarProperty Name="estimatedclosedate" ColumnName="estimatedclosedate" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
-                <ScalarProperty Name="createddate" ColumnName="createddate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -742,32 +759,9 @@
           <EntitySetMapping Name="UserGrades">
             <EntityTypeMapping TypeName="HRModel.UserGrade">
               <MappingFragment StoreEntitySet="UserGrades">
+                <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="gradeId" ColumnName="gradeId" />
                 <ScalarProperty Name="grade" ColumnName="grade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserManagements">
-            <EntityTypeMapping TypeName="HRModel.UserManagement">
-              <MappingFragment StoreEntitySet="UserManagement">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="dob" ColumnName="dob" />
-                <ScalarProperty Name="address1" ColumnName="address1" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="createDate" ColumnName="createDate" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="roles" ColumnName="roles" />
-                <ScalarProperty Name="grade" ColumnName="grade" />
-                <ScalarProperty Name="gradeChangeDate" ColumnName="gradeChangeDate" />
-                <ScalarProperty Name="registeredBy" ColumnName="registeredBy" />
-                <ScalarProperty Name="branchId" ColumnName="branchId" />
-                <ScalarProperty Name="reportingTo" ColumnName="reportingTo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -801,6 +795,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="jobPosts">
+            <EntityTypeMapping TypeName="HRModel.jobPost">
+              <MappingFragment StoreEntitySet="jobPosts">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="noOfVacancies" ColumnName="noOfVacancies" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="jobTilte" ColumnName="jobTilte" />
+                <ScalarProperty Name="jobId" ColumnName="jobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="HRModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
@@ -811,6 +821,47 @@
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="gitUrl" ColumnName="gitUrl" />
                 <ScalarProperty Name="taskId" ColumnName="taskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeProjectManagements">
+            <EntityTypeMapping TypeName="HRModel.EmployeeProjectManagement">
+              <MappingFragment StoreEntitySet="EmployeeProjectManagement">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="estimatedclosedate" ColumnName="estimatedclosedate" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="branchid" ColumnName="branchid" />
+                <ScalarProperty Name="modules" ColumnName="modules" />
+                <ScalarProperty Name="projectid" ColumnName="projectid" />
+                <ScalarProperty Name="clientid" ColumnName="clientid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserManagements">
+            <EntityTypeMapping TypeName="HRModel.UserManagement">
+              <MappingFragment StoreEntitySet="UserManagement">
+                <ScalarProperty Name="reportingTo" ColumnName="reportingTo" />
+                <ScalarProperty Name="branchId" ColumnName="branchId" />
+                <ScalarProperty Name="registeredBy" ColumnName="registeredBy" />
+                <ScalarProperty Name="gradeChangeDate" ColumnName="gradeChangeDate" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="roles" ColumnName="roles" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

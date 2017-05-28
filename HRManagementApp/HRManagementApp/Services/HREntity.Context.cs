@@ -29,7 +29,6 @@ namespace HRManagementApp.Services
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<EmployeeProjectManagement> EmployeeProjectManagements { get; set; }
         public DbSet<EmployeeSalary> EmployeeSalaries { get; set; }
         public DbSet<interview> interviews { get; set; }
         public DbSet<JobsAppliedFor> JobsAppliedFors { get; set; }
@@ -40,9 +39,12 @@ namespace HRManagementApp.Services
         public DbSet<Skill> Skills { get; set; }
         public DbSet<UiModule> UiModules { get; set; }
         public DbSet<UserGrade> UserGrades { get; set; }
-        public DbSet<UserManagement> UserManagements { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserSkillset> UserSkillsets { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<jobPost> jobPosts { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<EmployeeProjectManagement> EmployeeProjectManagements { get; set; }
+        public DbSet<UserManagement> UserManagements { get; set; }
     }
 }

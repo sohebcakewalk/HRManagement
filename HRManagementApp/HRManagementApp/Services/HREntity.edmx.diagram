@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="HRModel.Branch" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.Candidate" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.Client" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRModel.EmployeeProjectManagement" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.EmployeeSalary" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.interview" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.JobsAppliedFor" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
@@ -20,11 +19,13 @@
         <EntityTypeShape EntityType="HRModel.Skill" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.UiModule" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.UserGrade" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRModel.UserManagement" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.UserRole" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.UserSkillset" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRModel.Project" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.jobPost" Width="1.5" PointX="3.375" PointY="12.75" />
         <EntityTypeShape EntityType="HRModel.Task" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="HRModel.EmployeeProjectManagement" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="HRModel.UserManagement" Width="1.5" PointX="7.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

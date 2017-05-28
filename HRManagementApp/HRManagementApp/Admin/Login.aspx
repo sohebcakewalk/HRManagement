@@ -27,6 +27,10 @@
 
     <!-- Custom Css -->    
     <link href="../Lib/Css/style.css" rel="stylesheet" />
+   
+    <script src="../Lib/Plugins/bootboxalert/bootbox.min.js"></script>
+
+
 </head>
 
 <body class="login-page">
@@ -37,7 +41,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form id="sign_in">
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -83,7 +87,13 @@
 
     <!-- Custom Js -->    
     <script src="../Lib/Js/admin.js"></script>    
-    <script src="../Lib/Js/pages/examples/sign-in.js"></script>
+    <script src="../Lib/Js/pages/examples/sign-in.js"></script>    
+    <script src="Js/adminUser.js"></script>
+    <script src="../Services/service.js"></script>
+    <script>
+        let objAdmin = new AdminUser();
+        objAdmin.adminLogin();
+    </script>
 </body>
 
 </html>

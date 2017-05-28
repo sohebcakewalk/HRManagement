@@ -12,10 +12,14 @@ namespace HRManagementApp.Services
     using System;
     using System.Collections.Generic;
     
-    public partial class UserGrade
+    public partial class Task
     {
-        public long gradeId { get; set; }
-        public string grade { get; set; }
-        public string position { get; set; }
+        public long taskId { get; set; }
+        public string gitUrl { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public string taskName { get; set; }
+        public Nullable<int> timeTaken { get; set; }
+        public Nullable<long> userId { get; set; }
+        public Nullable<System.DateTime> completedDate { get; set; }
     }
 }
