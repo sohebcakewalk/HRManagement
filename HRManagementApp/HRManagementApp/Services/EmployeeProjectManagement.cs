@@ -14,16 +14,16 @@ namespace HRManagementApp.Services
     
     public partial class EmployeeProjectManagement
     {
-        public int id { get; set; }
-        public Nullable<int> useid { get; set; }
-        public Nullable<int> clientid { get; set; }
-        public Nullable<int> projectid { get; set; }
+        public long id { get; set; }
+        public Nullable<long> userid { get; set; }
+        public Nullable<long> clientid { get; set; }
+        public Nullable<long> projectid { get; set; }
         public string modules { get; set; }
-        public Nullable<int> branchid { get; set; }
+        public Nullable<long> branchid { get; set; }
         public string position { get; set; }
         public Nullable<System.DateTime> estimatedclosedate { get; set; }
         public string status { get; set; }
-        public Nullable<int> updatedby { get; set; }
+        public Nullable<long> updatedby { get; set; }
         public Nullable<System.DateTime> createddate { get; set; }
     }
 }
