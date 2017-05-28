@@ -16,13 +16,18 @@ class Tasks {
 
            // console.log(response.d);
 
-            $('#tblTasks').append('<tr><td>Task name</td><td>Git Url</td></tr>');
+            $('#tblTasks').append('<thead> <tr><th>Task name</th> <th>Git Url</th></tr></thead><tbody>');
+            
             for (let n of response.d) {
                 $('#tblTasks').append(`<tr><td>${n.TaskName}</td><td>${n.GitUrl}</td></tr>`);
             }
+            $('#tblTasks').append('</tbody>');
 
             //$('#tblTasks').DataTable();
 
+            $('.js-basic-example').DataTable({
+                responsive: true
+            });
         });
 
 
