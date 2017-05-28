@@ -9,9 +9,9 @@
     <script>
 
         jQuery(document).ready(function () {
-
-            new EmpProjManagement().GetData();
-
+            let objEmpPM = new EmpProjManagement();
+            objEmpPM.bindProjectList();
+            objEmpPM.GetData();
         });
 
 
@@ -69,11 +69,11 @@
                                     </p>
                                     <select class="form-control show-tick" data-live-search="true" id="cbxprojectlist">
                                         <option value="">-- Project List --</option>
-                                        <option value="1">Project A</option>
+                                        <%--<option value="1">Project A</option>
                                         <option value="2">Project B</option>
                                         <option value="3">Project C</option>
                                         <option value="4">Project D</option>
-                                        <option value="5">Project E</option>
+                                        <option value="5">Project E</option>--%>
                                     </select>
                                 </div>
                             </div>

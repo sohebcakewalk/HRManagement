@@ -65,4 +65,22 @@ class EmpProjManagement {
         //    return false;
         //})
     }
+
+    bindProjectList() {
+        let objService = new Service();
+        let objajax = objService.ajax("projectList", objService.POST, "{}");
+        objajax.done(function (response) {
+            let arrData = JSON.parse(response.d);
+            let options = $("#cbxprojectlist");
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Roles</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let i = 0; i < arrData.length; i++) {
+                options.append($("<option />").val(arrData[i].roleId).text(arrData[i].role));
+                liString += `<li data-original-index="${i + 1}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${arrData[i].role}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+
+            }
+            $(".dropdown-menu.inner")[0].innerHTML = liString;
+            //options.prev()[0].innerHTML = liString
+        });
+    }
+
 }
