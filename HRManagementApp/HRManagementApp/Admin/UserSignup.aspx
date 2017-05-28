@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Dashboard.Master" AutoEventWireup="true" CodeBehind="UserSignup.aspx.cs" Inherits="HRManagementApp.Admin.UserSignup" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
+    <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
     <script src="JS/adminUser.js"></script>
     <script src="../Services/service.js"></script>
     <script>
         $(document).ready(function () {
-            let objAdmin = new AdminUser();           
+            let objAdmin = new AdminUser();
             objAdmin.bindRoles();
             objAdmin.bindGrades();
             objAdmin.bindBranch();
@@ -19,8 +19,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>MULTI COLUMN
-                            </h2>
+                    <h2>Employee Management
+                    </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +39,20 @@
 
 
                         <div class="row clearfix">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" id="drpEmployee">
+                                            <option value="">-- Select User --</option>
+                                            <%--<option value="Sr. Developer">Sr. Developer</option>
+                                            <option value="Jr. Developer">Jr. Developer</option>
+                                            <option value="Team Leader">Team Leader</option>
+                                            <option value="Project Manager">Project Manager</option>--%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="text" name="name" class="form-control" required>
@@ -47,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="text" name="surname" class="form-control" required>
@@ -55,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="email" name="email" class="form-control" required>
@@ -99,7 +112,7 @@
                         </div>
 
 
-                        <div class="row clearfix">                             
+                        <div class="row clearfix">
                             <div class="col-md-3">
                                 <div class="form-group ">
                                     <div class="form-line">
@@ -117,10 +130,10 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select id="drpGrade" class="form-control show-tick" >
+                                        <select id="drpGrade" class="form-control show-tick">
                                             <option value="">-- Grades --</option>
-                                        </select>  
-                                        
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +142,7 @@
                                     <div class="form-line">
                                         <select id="drpBranch" class="form-control show-tick">
                                             <option value="">-- Branches --</option>
-                                        </select>                                       
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -139,16 +152,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                         <select id="drpRole" class="form-control show-tick">
-                                             <option value="">-- Roles --</option>
-                                         </select> 
+                                        <select id="drpRole" class="form-control show-tick">
+                                            <option value="">-- Roles --</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select class="form-control show-tick"  id="drpReporting">
+                                        <select class="form-control show-tick" id="drpReporting">
                                             <option value="">-- Reporting To --</option>
                                             <%--<option value="Sr. Developer">Sr. Developer</option>
                                             <option value="Jr. Developer">Jr. Developer</option>
@@ -163,5 +176,33 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+
+
+    <div class="row clearfix">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="card">
+
+                <div class="header">
+                    <h2>Employee List</h2>
+                </div>
+
+                
+                <div class="body">
+
+
+                    <table id="tblEmpList" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+
+                    </table>
+
+
+
+                </div><!-- body -->
+
+
+            </div>
+
+        </div>
 </asp:Content>
