@@ -30,21 +30,17 @@
         })
     }
     createjob() {
-        debugger
         $('#frmJobCreation').on('submit', (e, data) => {
             let arrData = $("#frmJobCreation").serializeArray();
             let objService = new Service();
             let objajax = objService.ajax("createJob", objService.POST, `{jobtitle: "${arrData[0].value}" ,skills:"${arrData[1].value}" ,noofvacancies:"${arrData[2].value}",remarks:"${arrData[3].value}"}`)
             objajax.done(function (response) {
-                //$('#tagsinput').value = "";
-                //$('#totalexperience').value = "";
-                //$('#biodata').value = "";
+                $('#tagsinput').val("");
+                $('#totalexperience').val("");
+                $('#biodata').val("");
                 console.log(response);
             });
             objajax.error(function (response) {
-                //$('#tagsinput').value = "";
-                //$('#totalexperience').value = "";
-                //$('#biodata').value = "";
                 console.log(response);
             });
             e.preventDefault();
@@ -66,5 +62,38 @@
             $(".dropdown-menu.inner")[0].innerHTML = liString
 
         });
+    }
+    GetJobListing() {
+        let objService = new Service();
+        let objajax = objService.ajax("GetTaskList", objService.POST, `{}`)
+        objajax.then(function (response) {
+            
+            let table = $("#tblJobs");
+
+            table.find("tr:gt(0)").remove();; // empty table            
+
+            table.append('<thead> <tr><th>Id</th><th>Job Title</th> <th>Skills</th><th>Experience Needed</th><th></th></tr></thead><tbody>');
+
+            for (let n of response.d) {
+                let strEditanchor = `new Tasks().editJob( '${n.JobTitle}','${n.skills}','${n.noOfVacancies}');`;
+                table.append(`<tr><td>${n.jobId}</td><td>${n.JobTitle}</td><td>${n.skills}</td><td>${n.noOfVacancies}</td><td ><a style='cursor:pointer' onclick="${strEditanchor}">Edit</a></td></tr>`);
+            }
+            table.append('</tbody>');
+            if ($.fn.dataTable.isDataTable(table) == false) {
+
+                try {
+                    $('.js-basic-example').DataTable({
+                        responsive: true
+                    });
+
+                } catch (e) {
+
+                }
+            }
+
+        });
+
+
+
     }
 }

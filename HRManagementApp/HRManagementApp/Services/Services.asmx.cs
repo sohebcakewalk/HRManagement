@@ -507,6 +507,7 @@ namespace HRManagementApp.Services
             {
                 try
                 {
+                    
                     jobpost.createDate = DateTime.Now;
                     jobpost.jobTilte = jobtitle;
                     jobpost.skills = skills;

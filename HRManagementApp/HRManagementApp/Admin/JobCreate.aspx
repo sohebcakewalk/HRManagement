@@ -66,12 +66,27 @@
             </div>
         </div>
     </div>
+     <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Job List</h2>
+                </div>
+                <div class="body">
+                    <table id="tblJobs" class="table table-bordered table-striped table-hover js-basic-example ">
+                    </table>
+                </div><!-- body -->
+            </div>
+        </div>
+    </div>
+    
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
     <script src="candidate.js"></script>
     <script src="../Services/service.js"></script>
      <script>
          $(document).ready(function () {
-             
+
+             new Canidate().GetJobListing();
              //candidate.bindSkills();
          });
          let candidate = new Candidate();
