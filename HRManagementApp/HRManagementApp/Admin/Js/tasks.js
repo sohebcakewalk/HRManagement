@@ -8,7 +8,7 @@ class Tasks {
 
         let objService = new Service();
         let objajax = objService.ajax("GetTaskList", objService.POST, `{}`)
-        console.log(objajax);
+        //console.log(objajax);
 
         
 
@@ -16,18 +16,33 @@ class Tasks {
 
            // console.log(response.d);
 
-            $('#tblTasks').append('<thead> <tr><th>Task name</th> <th>Git Url</th></tr></thead><tbody>');
+            let table = $("#tblTasks");
+
+            table.find("tr:gt(0)").remove();; // empty table            
+
+            table.append('<thead> <tr><th>Id</th><th>Task name</th> <th>Git Url</th><th>Minutes</th><th></th></tr></thead><tbody>');
             
             for (let n of response.d) {
-                $('#tblTasks').append(`<tr><td>${n.TaskName}</td><td>${n.GitUrl}</td></tr>`);
+                let strEditanchor = `new Tasks().editTask( '${n.TaskId}','${n.TaskName}','${n.GitUrl}','${n.TimeTaken}' );`;
+                table.append(`<tr><td>${n.TaskId}</td><td>${n.TaskName}</td><td>${n.GitUrl}</td><td>${n.TimeTaken}</td><td ><a style='cursor:pointer' onclick="${strEditanchor}">Edit</a></td></tr>`);
             }
-            $('#tblTasks').append('</tbody>');
+            table.append('</tbody>');
 
             //$('#tblTasks').DataTable();
 
-            $('.js-basic-example').DataTable({
-                responsive: true
-            });
+
+            if ($.fn.dataTable.isDataTable(table) == false) {
+
+                try {
+                    $('.js-basic-example').DataTable({
+                        responsive: true
+                    });
+
+                } catch (e) {
+
+                }
+            }
+            
         });
 
 
@@ -37,11 +52,12 @@ class Tasks {
 
     SaveTask() {
 
-        let taskName = $("#txttaskName").val();
-        let gitUrl = $("#txtgitUrl").val()
-        let timetaken = $("#txttimetaken").val();
+        let taskName = $("#txttaskName");
+        let gitUrl = $("#txtgitUrl")
+        let timetaken = $("#txttimetaken");
+        let hdEdit = $("#hdRecordid");
 
-        let data = `{Taskname: "${taskName}",gitUrl: "${gitUrl}",timeTaken:"${timetaken}"}`;
+        let data = `{Taskname: "${taskName.val()}",gitUrl: "${gitUrl.val()}",timeTaken:"${timetaken.val()}",recordid:"${hdEdit.val()}"}`;
 
 
         let objService = new Service();
@@ -52,15 +68,40 @@ class Tasks {
 
         objajax.then(function (response) {
 
-            console.log(response.d);
-
+           
            new Tasks().GetTasks();
 
+           taskName.val("");
+           gitUrl.val("");
+           timetaken.val("");
+           hdEdit.val("");
         });
 
 
 
 
+    }
+
+
+    editTask(taskid,taskname,giturl,hours) {
+
+        let hdEdit = $("#hdRecordid");
+        let txttaskName = $("#txttaskName");
+        let txtgitUrl = $("#txtgitUrl")
+        let txttimetaken = $("#txttimetaken");
+
+
+        hdEdit.val(taskid);
+        txttaskName.val(taskname);
+        txtgitUrl.val(giturl);
+        txttimetaken.val(hours);
+
+
+        txttaskName.focus();
+
+        txtgitUrl.focus();
+
+        txttimetaken.focus();
     }
 
 

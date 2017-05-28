@@ -20,6 +20,7 @@ namespace HRManagementApp.Services
     [System.Web.Script.Services.ScriptService]
     public class Services : System.Web.Services.WebService
     {
+
         [WebMethod(EnableSession = true)]
         public bool ValidateUser(string userName, string password)
         {
@@ -32,12 +33,12 @@ namespace HRManagementApp.Services
                     if (user.Count > 0)
                     {
                         flag = true;
-                        Session["user"] = user;
+                        Session["candidateuser"] = string.Format("{0}|{1}",user.FirstOrDefault().id, user.FirstOrDefault().emialid);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
             }
             return flag;
@@ -50,21 +51,21 @@ namespace HRManagementApp.Services
             {
                 try
                 {
-                    var user = db.UserManagements.Where(x => x.email == userName && x.password == password).ToList();
-                    if (user.Count > 0)
+                    var user = db.UserManagements.Where(x => x.email == userName && x.password == password);
+                    if (user.Any ())
                     {
                         flag = true;
-                        Session["user"] = user;
+                        Session["adminuser"] = string.Format("{0}|{1}", user.FirstOrDefault().userId, user.FirstOrDefault().email);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
             }
             return flag;
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public bool createUser(string fname, string lname, string email, string password, string phNumber, string gender)
         {
             Boolean flag = false;
@@ -78,9 +79,9 @@ namespace HRManagementApp.Services
                     flag = true;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
 
             }
@@ -89,7 +90,7 @@ namespace HRManagementApp.Services
         }
 
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
         {
             Boolean flag = false;
@@ -102,16 +103,16 @@ namespace HRManagementApp.Services
                     db.SaveChanges();
                     flag = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
             }
             return flag;
         }
 
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public string roles()
         {
             List<UserRole> roleList = new List<UserRole>();
@@ -122,9 +123,9 @@ namespace HRManagementApp.Services
                     roleList = db.UserRoles.ToList();
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
             }
             return JsonConvert.SerializeObject(roleList);
@@ -141,9 +142,9 @@ namespace HRManagementApp.Services
                     branchList = db.Branches.ToList();
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
-
+                    throw;
                 }
             }
             return JsonConvert.SerializeObject(branchList);
@@ -160,16 +161,16 @@ namespace HRManagementApp.Services
                     gradeList = db.UserGrades.ToList();
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    throw;
                 }
             }
 
             return JsonConvert.SerializeObject(gradeList);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<Models.ModelTask> GetTaskList()
         {
             try
@@ -188,6 +189,7 @@ namespace HRManagementApp.Services
 
                                 });
 
+
                     return data.ToList<Models.ModelTask>();
 
                 }
@@ -199,28 +201,69 @@ namespace HRManagementApp.Services
             }
 
         }
-        [WebMethod]
-        public bool SaveTask(string Taskname, string gitUrl, int timeTaken)
+
+
+
+        [WebMethod(EnableSession = true)]
+        public bool SaveTask(string Taskname, string gitUrl, int timeTaken,string recordid)
         {
             bool flagSucess = false;
 
             using (HREntities db = new HREntities())
             {
-                Task tsk = new Task();
 
-                tsk.taskName = Taskname;
-                tsk.gitUrl = gitUrl;
-                tsk.timeTaken = timeTaken;
+                if (recordid == "")
+                {
+                    Task tsk = new Task()
+                    {
+                        taskName = Taskname,
+                        gitUrl = gitUrl,
+                        timeTaken = timeTaken,
+                        createdDate = DateTime.UtcNow
+                    };
 
-                db.Tasks.Add(tsk);
+                    if (Session["user"] != null)
+                    {
+
+                        string currentUser = Session["user"].ToString();
+
+                        if (currentUser != null)
+                        {
+                            tsk.userId = long.Parse(currentUser.Split('|')[0]);
+
+                        }
+                    }
+
+
+                    db.Tasks.Add(tsk);
+                }else
+                {
+                    long Taskid = long.Parse(recordid);
+
+                    var data = db.Tasks.Where(j => j.taskId == Taskid);
+                    if (data.Any())
+                    {
+                        var d = data.FirstOrDefault();
+                        d.taskName = Taskname;
+                        d.gitUrl = gitUrl;
+                        d.timeTaken = timeTaken;
+
+
+                    }
+
+                }
+
                 db.SaveChanges();
+
+
                 flagSucess = true;
             }
 
 
             return flagSucess;
         }
-        [WebMethod]
+
+        [WebMethod(EnableSession = true)]
         public string GetEmpProjManagementList()
         {
             try
@@ -287,35 +330,43 @@ namespace HRManagementApp.Services
             }
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public bool SaveEmpProjManagement(int userid, int projectid, string modules, string position, DateTime estimatedclosedate)
         {
             bool flagSucess = false;
 
-            using (HREntities db = new HREntities())
+            try
             {
-                EmployeeProjectManagement tsk = new EmployeeProjectManagement();
+                using (HREntities db = new HREntities())
+                {
+                    EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
-                var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => new { a.clientId });
-                var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => new { a.branchId });
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => new { a.clientId });
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => new { a.branchId });
 
-                tsk.useid = userid;
-                tsk.clientid = int.Parse(cId.ToString());
-                tsk.projectid = projectid;
-                tsk.modules = modules;
-                tsk.branchid = int.Parse(bId.ToString()); ;
-                tsk.position = position;
-                tsk.estimatedclosedate = estimatedclosedate;
-                tsk.status = "Added";
-                tsk.updatedby = 2;
-                tsk.createddate = DateTime.UtcNow;
+                    tsk.useid = userid;
+                    tsk.clientid = int.Parse(cId.ToString());
+                    tsk.projectid = projectid;
+                    tsk.modules = modules;
+                    tsk.branchid = int.Parse(bId.ToString()); ;
+                    tsk.position = position;
+                    tsk.estimatedclosedate = estimatedclosedate;
+                    tsk.status = "Added";
+                    tsk.updatedby = 2;
+                    tsk.createddate = DateTime.UtcNow;
 
-                db.EmployeeProjectManagements.Add(tsk);
-                db.SaveChanges();
-                flagSucess = true;
+                    db.EmployeeProjectManagements.Add(tsk);
+                    db.SaveChanges();
+                    flagSucess = true;
+                }
             }
+            catch (Exception)
+            {
 
 
+                throw;
+            }
+            
             return flagSucess;
 
         }
