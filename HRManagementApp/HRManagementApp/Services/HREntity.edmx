@@ -116,6 +116,7 @@
           <Property Name="userId" Type="bigint" />
           <Property Name="approvedBy" Type="bigint" />
           <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="branchid" Type="int" />
         </EntityType>
         <EntityType Name="JobsAppliedFor">
           <Key>
@@ -525,6 +526,7 @@
           <Property Name="userId" Type="Int64" />
           <Property Name="approvedBy" Type="Int64" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="branchid" Type="Int32" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -798,6 +800,7 @@
           <EntitySetMapping Name="jobPosts">
             <EntityTypeMapping TypeName="HRModel.jobPost">
               <MappingFragment StoreEntitySet="jobPosts">
+                <ScalarProperty Name="branchid" ColumnName="branchid" />
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
