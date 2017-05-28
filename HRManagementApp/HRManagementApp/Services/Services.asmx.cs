@@ -249,8 +249,6 @@ namespace HRManagementApp.Services
                         d.taskName = Taskname;
                         d.gitUrl = gitUrl;
                         d.timeTaken = timeTaken;
-
-
                     }
 
                 }
@@ -396,7 +394,7 @@ namespace HRManagementApp.Services
         {
             bool flagSucess = false;
             int userId = 0;
-            if (Session["user"] != null)
+            if (Session["adminuser"] != null)
             {
 
                 string currentUser = Session["adminuser"].ToString();
@@ -492,9 +490,10 @@ namespace HRManagementApp.Services
             return JsonConvert.SerializeObject(moduleList);
         }
         [WebMethod(EnableSession = true)]
-        public bool createJob(string jobtitle, string skills, int noofvacancies, string remarks)
+        public bool createJob(string recordid, string jobtitle, string skills, int noofvacancies, string remarks, bool  isActive)
         {
             bool flagSucess = false;
+            //bool isActiveTest = true;
             int userId = 0;
             if (Session["adminuser"] != null)
             {
@@ -507,22 +506,41 @@ namespace HRManagementApp.Services
 
                 }
             }
-            jobPost jobpost = new jobPost();
+
+            
             using (HREntities db = new HREntities())
             {
+
                 try
                 {
-                    jobpost.createDate = DateTime.Now;
-                    jobpost.jobTilte = jobtitle;
-                    jobpost.skills = skills;
-                    jobpost.noOfVacancies = noofvacancies;
-                    jobpost.remarks = remarks;
-                    jobpost.userId = userId;
-                    jobpost.isActive = true;
+                    jobPost jobpost = new jobPost();
+                    if (recordid == "")
+                    {
+                        jobpost.createDate = DateTime.Now;
+                        jobpost.jobTilte = jobtitle;
+                        jobpost.skills = skills;
+                        jobpost.noOfVacancies = noofvacancies;
+                        jobpost.remarks = remarks;
+                        jobpost.userId = userId;
+                        jobpost.isActive = isActive;
+                        db.jobPosts.Add(jobpost);
 
-                    db.jobPosts.Add(jobpost);
-                    db.SaveChanges();
+                    }
+                    else {
+
+                        long id = long.Parse(recordid);
+                        jobpost = db.jobPosts.Where(x => x.jobId == id).SingleOrDefault();
+                        jobpost.createDate = DateTime.Now;
+                        jobpost.jobTilte = jobtitle;
+                        jobpost.skills = skills;
+                        jobpost.noOfVacancies = noofvacancies;
+                        jobpost.remarks = remarks;
+                        jobpost.userId = userId;
+                        jobpost.isActive = isActive;
+                        
+                    }
                     flagSucess = true;
+                    db.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -543,6 +561,7 @@ namespace HRManagementApp.Services
                 using (HREntities db = new HREntities())
                 {
                     var data = db.jobPosts.ToList();
+                    jobPost obj = new jobPost();
                     return JsonConvert.SerializeObject(data);
                 }
             }
