@@ -322,7 +322,7 @@
             <div class="menu">
                 <ul class="list">                    
                     <li class="active">
-                        <a href="index.html">
+                        <a href="JobCreate.aspx">
                             <i class="material-icons">home</i>
                             <span>Job Posting</span>
                         </a>
@@ -350,7 +350,13 @@
                             <i class="material-icons">description</i>
                             <span>Task Management</span>
                         </a>
-                    </li>                                       
+                    </li> 
+                    <li>
+                        <a href="CandidateDetails.aspx">
+                            <i class="material-icons">person</i>
+                            <span>Employee Skills Update</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
