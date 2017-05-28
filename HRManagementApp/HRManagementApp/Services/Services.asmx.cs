@@ -415,7 +415,24 @@ namespace HRManagementApp.Services
             return JsonConvert.SerializeObject(moduleList);
         }
 
+        [WebMethod(EnableSession = true)]
+        public string GetJobs()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.jobPosts.ToList();
+                    return JsonConvert.SerializeObject(data);
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+
+        }
     }
 
 }
