@@ -262,20 +262,25 @@ namespace HRManagementApp.Services
 
             return flagSucess;
         }
+
         [WebMethod(EnableSession = true)]
-        public List<ModelEmpProjManagement> GetEmpProjManagementList()
+        public string GetEmpProjManagementList()
         {
             try
             {
                 using (HREntities db = new HREntities())
                 {
                     var data = (from a in db.EmployeeProjectManagements
+                                join m1 in db.Clients on a.clientid equals m1.clientId
+                                join m2 in db.Projects on a.projectid equals m2.projectId                                
                                 select new ModelEmpProjManagement
                                 {
                                     id = a.id,
-                                    useid = a.useid,
+                                    userid = a.userid,
                                     clientid = a.clientid,
+                                    clientName = m1.clientname,
                                     projectid = a.projectid,
+                                    projectName = m2.projectName,
                                     modules = a.modules,
                                     branchid = a.branchid,
                                     position = a.position,
@@ -283,7 +288,7 @@ namespace HRManagementApp.Services
                                     createddate = DateTime.UtcNow
 
                                 });
-                    return data.ToList();
+                    return JsonConvert.SerializeObject(data.ToList());
                 }
             }
             catch (Exception)
@@ -301,6 +306,7 @@ namespace HRManagementApp.Services
                     var data = (from a in db.UserManagements
                                 select new Models.UserManage
                                 {
+                                    userId = a.userId,
                                     firstName = a.firstName,
                                     LastName = a.LastName,
                                     email = a.email,
@@ -310,7 +316,7 @@ namespace HRManagementApp.Services
                                     address1 = a.address1,
                                     address2 = a.address2,
                                     createDate = a.createDate,
-                                    status = a.status,
+                                    status = true,
                                     roles = a.roles,
                                     grade = a.grade,
                                     gradeChangeDate = a.gradeChangeDate,
@@ -329,7 +335,7 @@ namespace HRManagementApp.Services
         }
 
         [WebMethod(EnableSession = true)]
-        public bool SaveEmpProjManagement(int userid, int clientid, int projectid, string modules, int branchid, string position, DateTime estimatedclosedate)
+        public bool SaveEmpProjManagement(int userid, int projectid, string modules, string position, DateTime estimatedclosedate)
         {
             bool flagSucess = false;
 
@@ -339,11 +345,14 @@ namespace HRManagementApp.Services
                 {
                     EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
-                    tsk.useid = userid;
-                    tsk.clientid = clientid;
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId ).FirstOrDefault();
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId ).FirstOrDefault();
+
+                    tsk.userid = userid;
+                    tsk.clientid = cId;
                     tsk.projectid = projectid;
                     tsk.modules = modules;
-                    tsk.branchid = branchid;
+                    tsk.branchid = bId;
                     tsk.position = position;
                     tsk.estimatedclosedate = estimatedclosedate;
                     tsk.status = "Added";
@@ -354,7 +363,6 @@ namespace HRManagementApp.Services
                     db.SaveChanges();
                     flagSucess = true;
                 }
-
             }
             catch (Exception)
             {
@@ -417,10 +425,29 @@ namespace HRManagementApp.Services
 
                     throw;
                 }
-               
+
             }
             return flagSucess;
         }
+        public string projectList()
+        {
+            List<Project> projectList = new List<Project>();
+
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    projectList = db.Projects.OrderBy(a => a.projectName).ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(projectList);
+        }
+
         [WebMethod(EnableSession = true)]
         public string skills()
         {
@@ -440,12 +467,31 @@ namespace HRManagementApp.Services
 
             return JsonConvert.SerializeObject(skillList);
         }
+        [WebMethod]
+        public string moduleList()
+        {
+            List<ProjectModule> moduleList = new List<ProjectModule>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+
+                    moduleList = db.ProjectModules.OrderBy(a => a.modulename).ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(moduleList);
+        }
         [WebMethod(EnableSession = true)]
         public bool createJob(string jobtitle, string skills, int noofvacancies , string remarks)
         {
             bool flagSucess = false;
             int userId = 0;
-            if (Session["user"] != null)
+            if (Session["adminuser"] != null)
             {
 
                 string currentUser = Session["adminuser"].ToString();

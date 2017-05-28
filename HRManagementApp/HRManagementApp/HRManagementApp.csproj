@@ -88,7 +88,6 @@
     <Content Include="Lib\Plugins\bootboxalert\bootbox.min.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
-    <Content Include="require.js" />
     <EntityDeploy Include="Services\HREntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HREntity.Designer.cs</LastGenOutput>
@@ -212,6 +211,20 @@
     <Content Include="Lib\Plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Lib\Css\2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" />
     <Content Include="Admin\Dashboard.Master" />
+    <Content Include="Lib\Css\ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\77FXFjRbGzN4aCrSFhlh3hJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="Lib\Css\97uahxiqZRoncBaCEI3aWxJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="Lib\Css\CWB0XYA8bzo0kSThX0UTuA.woff2" />
+    <Content Include="Lib\Css\d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2" />
+    <Content Include="Lib\Css\Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\isZ-wbCXNKAbnjo6_TwHThJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="Lib\Css\jSN2CGVDbcVyCnfJfjSdfBJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="Lib\Css\mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="Lib\Css\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="Lib\Css\UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
