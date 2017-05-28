@@ -83,6 +83,8 @@
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="Lib\Plugins\bootboxalert\bootbox.min.js" />
+    <Content Include="Lib\Plugins\jquery\jquery.easing.min.js" />
+    <Content Include="Lib\Plugins\jquery\scrolling-nav.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <EntityDeploy Include="Services\HREntity.edmx">
@@ -3488,6 +3490,7 @@
     <Content Include="Lib\Plugins\waitme\waitMe.min.css" />
     <Content Include="Lib\Plugins\waitme\waitMe.min.js" />
     <Content Include="User\ForgotPassword.aspx" />
+    <Content Include="User\Js\jobslisting.js" />
     <Content Include="User\Signin.aspx" />
     <Content Include="User\Signup.aspx" />
     <Content Include="User\user.js" />
