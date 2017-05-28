@@ -10,6 +10,7 @@
             objAdmin.bindRoles();
             objAdmin.bindGrades();
             objAdmin.bindBranch();
+            objAdmin.bindReportingTo();
         });
     </script>
 </asp:Content>
@@ -149,10 +150,10 @@
                                     <div class="form-line">
                                         <select class="form-control show-tick"  id="drpReporting">
                                             <option value="">-- Reporting To --</option>
-                                            <option value="Sr. Developer">Sr. Developer</option>
+                                            <%--<option value="Sr. Developer">Sr. Developer</option>
                                             <option value="Jr. Developer">Jr. Developer</option>
                                             <option value="Team Leader">Team Leader</option>
-                                            <option value="Project Manager">Project Manager</option>
+                                            <option value="Project Manager">Project Manager</option>--%>
                                         </select>
                                     </div>
                                 </div>

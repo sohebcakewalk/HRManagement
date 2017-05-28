@@ -6,7 +6,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using Newtonsoft.Json;
 using HRManagementApp.Services;
-
+using HRManagementApp.Models;
 
 namespace HRManagementApp.Services
 {
@@ -20,12 +20,6 @@ namespace HRManagementApp.Services
     [System.Web.Script.Services.ScriptService]
     public class Services : System.Web.Services.WebService
     {
-        [WebMethod]
-        public string getUser()
-        {
-
-            return "sumit";
-        }
         [WebMethod(EnableSession = true)]
         public bool ValidateUser(string userName, string password)
         {
@@ -153,7 +147,7 @@ namespace HRManagementApp.Services
                 }
             }
             return JsonConvert.SerializeObject(branchList);
-           
+
         }
         [WebMethod]
         public string grades()
@@ -171,69 +165,105 @@ namespace HRManagementApp.Services
 
                 }
             }
-          
+
             return JsonConvert.SerializeObject(gradeList);
         }
 
-    [WebMethod]
-    public List<Models.ModelTask> GetTaskList()
-    {
-        try
+        [WebMethod]
+        public List<Models.ModelTask> GetTaskList()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = (from a in db.Tasks
+                                select new Models.ModelTask
+                                {
+                                    TaskId = a.taskId,
+                                    TaskName = a.taskName,
+                                    CompletedDate = a.completedDate,
+                                    createDate = a.createdDate,
+                                    GitUrl = a.gitUrl,
+                                    TimeTaken = a.timeTaken,
+
+                                });
+
+                    return data.ToList<Models.ModelTask>();
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [WebMethod]
+        public bool SaveTask(string Taskname, string gitUrl, int timeTaken)
+        {
+            bool flagSucess = false;
+
+            using (HREntities db = new HREntities())
+            {
+                Task tsk = new Task();
+
+                tsk.taskName = Taskname;
+                tsk.gitUrl = gitUrl;
+                tsk.timeTaken = timeTaken;
+
+                db.Tasks.Add(tsk);
+                db.SaveChanges();
+                flagSucess = true;
+            }
+
+            return flagSucess;
+
+
+        }
+        [WebMethod(EnableSession = true)]
+        public string UserManagement()
         {
             using (HREntities db = new HREntities())
             {
-                var data = (from a in db.Tasks
-                            select new Models.ModelTask
-                            {
-                                TaskId = a.taskId,
-                                TaskName = a.taskName,
-                                CompletedDate = a.completedDate,
-                                createDate = a.createdDate,
-                                GitUrl = a.gitUrl,
-                                TimeTaken = a.timeTaken,
+                try
+                {
+                    var data = (from a in db.UserManagements
+                                select new Models.UserManage
+                                {
+                                    firstName = a.firstName,
+                                    LastName = a.LastName,
+                                    email = a.email,
+                                    gender = a.gender,
+                                    phone = a.phone,
+                                    dob = a.dob,
+                                    address1 = a.address1,
+                                    address2 = a.address2,
+                                    createDate = a.createDate,
+                                    status = a.status,
+                                    roles = a.roles,
+                                    grade = a.grade,
+                                    gradeChangeDate = a.gradeChangeDate,
+                                    registeredBy = a.registeredBy,
+                                    branchId = a.branchId,
+                                    reportingTo = a.reportingTo
 
-                            });
-
-                return data.ToList<Models.ModelTask>();
-
+                                });
+                    return JsonConvert.SerializeObject(data.ToList<Models.UserManage>());
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
-        }
-        catch (Exception)
-        {
 
-            throw;
+
         }
 
     }
 
 
 
-    [WebMethod]
-    public bool SaveTask(string Taskname, string gitUrl, int timeTaken)
-    {
-        bool flagSucess = false;
-
-        using (HREntities db = new HREntities())
-        {
-            Task tsk = new Task();
-
-            tsk.taskName = Taskname;
-            tsk.gitUrl = gitUrl;
-            tsk.timeTaken = timeTaken;
-
-            db.Tasks.Add(tsk);
-            db.SaveChanges();
-            flagSucess = true;
-        }
-
-        return flagSucess;
-
-
-    }
-
-    }
-
-
-   
 
 }
