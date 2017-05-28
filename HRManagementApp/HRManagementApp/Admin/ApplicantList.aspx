@@ -8,8 +8,8 @@
     <script>
 
         jQuery(document).ready(function () {
-            let objEmpPM = new ApplicantList();
-            objEmpPM.GetData();
+            let obj = new ApplicantList();
+            obj.GetData();
         });
 
 

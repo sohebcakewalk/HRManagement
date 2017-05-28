@@ -7550,7 +7550,7 @@ fieldset[disabled] .form-control {
         color: #fff; }
   .sidebar .menu {
     position: relative;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     height: 90vh; }
     .sidebar .menu .list {
       list-style: none;

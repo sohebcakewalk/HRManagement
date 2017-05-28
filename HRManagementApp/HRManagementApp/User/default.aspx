@@ -31,7 +31,7 @@
             <div class="card">
 
                 <div class="header">
-                    <h2>Employee Project List</h2>
+                    <h2>Job Listing</h2>
                 </div>
 
 

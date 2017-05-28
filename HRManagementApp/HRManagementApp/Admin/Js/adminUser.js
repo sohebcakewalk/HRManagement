@@ -154,7 +154,8 @@
                     if (response.d === true) {
 
                         $('#sign_up')[0].reset();
-                        window.location = 'login.aspx';
+                        //window.location = 'login.aspx';
+                        this.GetData();
 
                     } else {
 
