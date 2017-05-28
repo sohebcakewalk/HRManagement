@@ -81,7 +81,7 @@
        <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
     <script  src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script> 
     <script type="text/javascript">
-        var jQuery3 = $.noConflict(true);
+        let jQuery3 = $.noConflict(true);
     </script>
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
 

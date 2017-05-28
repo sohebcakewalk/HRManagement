@@ -36,7 +36,7 @@
         let objajax = objService.ajax("UserManagement", objService.POST, `{}`)
         console.log(objajax);
 
-        objajax.then(function (response) {
+        objajax.then((response)=> {
 
             // console.log(response.d);
             let arrData = JSON.parse(response.d);

@@ -53,7 +53,7 @@ class EmpProjManagement {
         let userid = $("#cbxuserlist");
         let projectid = $("#cbxprojectlist");
         let modules = $("#cbxmodulelist");
-        var mdl = modules.val();
+        let mdl = modules.val();
         mdl = (mdl != undefined && mdl != null && mdl != "") ? mdl.join(", ") : "";
         let position = $("#cbxpositionlist");
         let estimatedclosedate = $("#txtDate");
