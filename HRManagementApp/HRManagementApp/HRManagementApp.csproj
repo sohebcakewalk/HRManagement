@@ -74,7 +74,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ApplicantList.aspx" />
     <Content Include="Admin\Js\adminUser.js" />
+    <Content Include="Admin\Js\ApplicantList.js" />
     <Content Include="Admin\UserSignup.aspx" />
     <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="Admin\Js\EmployeeProjectManagement.js" />
@@ -3499,6 +3501,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ApplicantList.aspx.cs">
+      <DependentUpon>ApplicantList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ApplicantList.aspx.designer.cs">
+      <DependentUpon>ApplicantList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CandidateDetails.aspx.cs">
       <DependentUpon>CandidateDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
