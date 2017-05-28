@@ -25,7 +25,7 @@ namespace HRManagementApp.Services
         public string address1 { get; set; }
         public string address2 { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
-        public string status { get; set; }
+        public Nullable<bool> status { get; set; }
         public string roles { get; set; }
         public string grade { get; set; }
         public Nullable<System.DateTime> gradeChangeDate { get; set; }
