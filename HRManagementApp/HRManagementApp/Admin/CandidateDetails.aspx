@@ -42,7 +42,7 @@
                                             <input type="checkbox" id="md_checkbox_25" class="filled-in chk-col-indigo" checked />
                                             <label for="md_checkbox_25">INDIGO</label>
                                         </div>--%>
-                                        <div class="body">
+                                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-5">
                                             <div class="form-group demo-tagsinput-area">
                                                 <div class="form-line">
                                                     <input type="text" class="form-control" name="tagsinput" data-role="tagsinput" value="">

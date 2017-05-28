@@ -76,6 +76,7 @@
   <ItemGroup>
     <Content Include="Admin\candidate.js" />
     <Content Include="Admin\CandidateDetails.aspx" />
+    <Content Include="Admin\JobCreate.aspx" />
     <Content Include="app.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
@@ -6850,6 +6851,13 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\JobCreate.aspx.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\JobCreate.aspx.designer.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
