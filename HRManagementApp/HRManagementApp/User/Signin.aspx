@@ -78,8 +78,8 @@
     </div>
 
     <!-- Jquery Core Js -->    
-       <script src="../Resources/Plugins/jquery/jquery.min.js"></script>
-    <script  src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script> 
+       <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
+    
     <script type="text/javascript">
         let jQuery3 = $.noConflict(true);
     </script>
@@ -95,8 +95,8 @@
     <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Custom Js -->    
-    <script src="../Resources/Js/admin.js"></script>    
-    <script src="../Resources/Js/pages/examples/sign-in.js"></script>
+    <script src="../Lib/Js/admin.js"></script>    
+    <script src="../Lib/Js/pages/examples/sign-in.js"></script>
     <script src="user.js"></script>
     <script src="../Services/service.js"></script>
     <script>

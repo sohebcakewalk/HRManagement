@@ -229,6 +229,8 @@
     <Content Include="Lib\Css\PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2" />
     <Content Include="Lib\Css\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2" />
     <Content Include="Lib\Css\UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="User\AccountSetting.aspx" />
+    <Content Include="User\AppliedJob.aspx" />
     <Content Include="User\candidateDashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3569,6 +3571,9 @@
     <Compile Include="Admin\UserSignup.aspx.designer.cs">
       <DependentUpon>UserSignup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BaseAdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3659,6 +3664,20 @@
     </Compile>
     <Compile Include="Services\UserSkillset.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User\AccountSetting.aspx.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\AccountSetting.aspx.designer.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\AppliedJob.aspx.cs">
+      <DependentUpon>AppliedJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\AppliedJob.aspx.designer.cs">
+      <DependentUpon>AppliedJob.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\candidateDashboard.Master.cs">
       <DependentUpon>candidateDashboard.Master</DependentUpon>
