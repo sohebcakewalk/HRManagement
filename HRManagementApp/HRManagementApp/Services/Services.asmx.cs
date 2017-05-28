@@ -274,11 +274,13 @@ namespace HRManagementApp.Services
                 {
                     var data = (from a in db.EmployeeProjectManagements
                                 join m1 in db.Clients on a.clientid equals m1.clientId
-                                join m2 in db.Projects on a.projectid equals m2.projectId
+                                join m2 in db.Projects on a.projectid equals m2.projectId    
+                                join u in db.UserManagements on a.userid equals u.userId
                                 select new ModelEmpProjManagement
                                 {
                                     id = a.id,
                                     userid = a.userid,
+                                    userName = u.email,
                                     clientid = a.clientid,
                                     clientName = m1.clientname,
                                     projectid = a.projectid,
@@ -352,10 +354,10 @@ namespace HRManagementApp.Services
                     var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId).FirstOrDefault();
 
                     tsk.userid = userid;
-                    tsk.clientid = cId;
+                    tsk.clientid = cId;                    
                     tsk.projectid = projectid;
                     tsk.modules = modules;
-                    tsk.branchid = bId;
+                    tsk.branchid = bId == null ? 1 : bId;
                     tsk.position = position;
                     tsk.estimatedclosedate = estimatedclosedate;
                     tsk.status = "Added";
