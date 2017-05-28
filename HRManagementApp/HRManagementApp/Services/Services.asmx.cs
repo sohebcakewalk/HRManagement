@@ -22,7 +22,7 @@ namespace HRManagementApp.Services
     {
 
         [WebMethod(EnableSession = true)]
-        public bool ValidateUser(string userName, string password)
+        public object ValidateUser(string userName, string password)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -376,14 +376,68 @@ namespace HRManagementApp.Services
         }
 
         [WebMethod]
-        public string projectList()
+        public object getCandidate(int id)
         {
-            List<Project> projectList = new List<Project>();
+            object candidate;
+            using (HREntities db = new HREntities())
+            {
+                candidate = db.Candidates.Where(x => x.id == id).ToList();
+                
+            }
+            return candidate;
+        }
+        [WebMethod(EnableSession = true)]
+        public bool updateCandidate(string skillset, int experience, string biodata)
+        {
+            bool flagSucess = false;
+            int userId = 0;
+            if (Session["user"] != null)
+            {
+
+                string currentUser = Session["adminuser"].ToString();
+
+                if (currentUser != null)
+                {
+                    userId = int.Parse(currentUser.Split('|')[0]);
+
+                }
+            }
+
+            
+            Candidate candidate = new Candidate();
             using (HREntities db = new HREntities())
             {
                 try
                 {
-                    projectList = db.Projects.OrderBy(a=>a.projectName).ToList();
+                    candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
+                    if (candidate != null)
+                    {
+                        candidate.skillset = skillset;
+                        candidate.overallexperience = experience;
+                        candidate.biodatapath = biodata;
+                    }
+                    db.SaveChanges();
+                    flagSucess = true;
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            return flagSucess;
+        }
+        public string projectList()
+        {
+            List<Project> projectList = new List<Project>();
+
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    projectList = db.Projects.OrderBy(a => a.projectName).ToList();
 
                 }
                 catch (Exception ex)
@@ -394,6 +448,25 @@ namespace HRManagementApp.Services
             return JsonConvert.SerializeObject(projectList);
         }
 
+        [WebMethod(EnableSession = true)]
+        public string skills()
+        {
+            List<Skill> skillList = new List<Skill>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    skillList = db.Skills.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return JsonConvert.SerializeObject(skillList);
+        }
         [WebMethod]
         public string moduleList()
         {
@@ -402,6 +475,7 @@ namespace HRManagementApp.Services
             {
                 try
                 {
+
                     moduleList = db.ProjectModules.OrderBy(a => a.modulename).ToList();
 
                 }
@@ -412,8 +486,48 @@ namespace HRManagementApp.Services
             }
             return JsonConvert.SerializeObject(moduleList);
         }
+        [WebMethod(EnableSession = true)]
+        public bool createJob(string jobtitle, string skills, int noofvacancies , string remarks)
+        {
+            bool flagSucess = false;
+            int userId = 0;
+            if (Session["adminuser"] != null)
+            {
 
+                string currentUser = Session["adminuser"].ToString();
 
+                if (currentUser != null)
+                {
+                    userId = int.Parse(currentUser.Split('|')[0]);
+
+                }
+            }
+            jobPost jobpost = new jobPost();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    jobpost.createDate = DateTime.Now;
+                    jobpost.jobTilte = jobtitle;
+                    jobpost.skills = skills;
+                    jobpost.noOfVacancies = noofvacancies;
+                    jobpost.remarks = remarks;
+                    jobpost.userId = userId;
+                    jobpost.isActive = true;
+
+                    db.jobPosts.Add(jobpost);
+                    db.SaveChanges();
+                    flagSucess = true;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            return flagSucess;
+        }
     }
 
 }
