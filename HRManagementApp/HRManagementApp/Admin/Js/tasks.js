@@ -12,7 +12,7 @@ class Tasks {
 
         
 
-        objajax.then(function (response) {
+        objajax.then((response)=> {
 
            // console.log(response.d);
 
@@ -66,7 +66,7 @@ class Tasks {
 
 
 
-        objajax.then(function (response) {
+        objajax.then((response)=> {
 
            
            new Tasks().GetTasks();

@@ -31,7 +31,6 @@ namespace HRManagementApp.Services
         public DbSet<Client> Clients { get; set; }
         public DbSet<EmployeeSalary> EmployeeSalaries { get; set; }
         public DbSet<interview> interviews { get; set; }
-        public DbSet<JobsAppliedFor> JobsAppliedFors { get; set; }
         public DbSet<leaveapplication> leaveapplications { get; set; }
         public DbSet<ModulesInRole> ModulesInRoles { get; set; }
         public DbSet<performanceappraisal> performanceappraisals { get; set; }
@@ -46,5 +45,6 @@ namespace HRManagementApp.Services
         public DbSet<Task> Tasks { get; set; }
         public DbSet<EmployeeProjectManagement> EmployeeProjectManagements { get; set; }
         public DbSet<UserManagement> UserManagements { get; set; }
+        public DbSet<JobsAppliedFor> JobsAppliedFors { get; set; }
     }
 }

@@ -116,13 +116,14 @@
           <Property Name="userId" Type="bigint" />
           <Property Name="approvedBy" Type="bigint" />
           <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="branchid" Type="int" />
         </EntityType>
         <EntityType Name="JobsAppliedFor">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="jobpostid" Type="int" />
+          <Property Name="jobpostid" Type="bigint" />
           <Property Name="candidateid" Type="int" />
           <Property Name="applydate" Type="date" />
           <Property Name="status" Type="nvarchar" MaxLength="10" />
@@ -374,18 +375,6 @@
           <Property Name="createddate" Type="DateTime" Precision="0" />
           <Property Name="branchId" Type="Int64" />
         </EntityType>
-        <EntityType Name="JobsAppliedFor">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="jobpostid" Type="Int32" />
-          <Property Name="candidateid" Type="Int32" />
-          <Property Name="applydate" Type="DateTime" Precision="0" />
-          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="branchid" Type="Int32" />
-          <Property Name="createddate" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="leaveapplication">
           <Key>
             <PropertyRef Name="id" />
@@ -495,7 +484,6 @@
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="EmployeeSalaries" EntityType="Self.EmployeeSalary" />
           <EntitySet Name="interviews" EntityType="Self.interview" />
-          <EntitySet Name="JobsAppliedFors" EntityType="Self.JobsAppliedFor" />
           <EntitySet Name="leaveapplications" EntityType="Self.leaveapplication" />
           <EntitySet Name="ModulesInRoles" EntityType="Self.ModulesInRole" />
           <EntitySet Name="performanceappraisals" EntityType="Self.performanceappraisal" />
@@ -510,6 +498,7 @@
           <EntitySet Name="Tasks" EntityType="HRModel.Task" />
           <EntitySet Name="EmployeeProjectManagements" EntityType="HRModel.EmployeeProjectManagement" />
           <EntitySet Name="UserManagements" EntityType="HRModel.UserManagement" />
+          <EntitySet Name="JobsAppliedFors" EntityType="HRModel.JobsAppliedFor" />
         </EntityContainer>
         <EntityType Name="jobPost">
           <Key>
@@ -525,6 +514,7 @@
           <Property Name="userId" Type="Int64" />
           <Property Name="approvedBy" Type="Int64" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="branchid" Type="Int32" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -576,6 +566,18 @@
           <Property Name="registeredBy" Type="Int64" />
           <Property Name="branchId" Type="Int64" />
           <Property Name="reportingTo" Type="Int64" />
+        </EntityType>
+        <EntityType Name="JobsAppliedFor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jobpostid" Type="Int64" />
+          <Property Name="candidateid" Type="Int32" />
+          <Property Name="applydate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="branchid" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -667,19 +669,6 @@
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="branchId" ColumnName="branchId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JobsAppliedFors">
-            <EntityTypeMapping TypeName="HRModel.JobsAppliedFor">
-              <MappingFragment StoreEntitySet="JobsAppliedFor">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="jobpostid" ColumnName="jobpostid" />
-                <ScalarProperty Name="candidateid" ColumnName="candidateid" />
-                <ScalarProperty Name="applydate" ColumnName="applydate" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="branchid" ColumnName="branchid" />
-                <ScalarProperty Name="createddate" ColumnName="createddate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -798,6 +787,7 @@
           <EntitySetMapping Name="jobPosts">
             <EntityTypeMapping TypeName="HRModel.jobPost">
               <MappingFragment StoreEntitySet="jobPosts">
+                <ScalarProperty Name="branchid" ColumnName="branchid" />
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
@@ -862,6 +852,19 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobsAppliedFors">
+            <EntityTypeMapping TypeName="HRModel.JobsAppliedFor">
+              <MappingFragment StoreEntitySet="JobsAppliedFor">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="branchid" ColumnName="branchid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="applydate" ColumnName="applydate" />
+                <ScalarProperty Name="candidateid" ColumnName="candidateid" />
+                <ScalarProperty Name="jobpostid" ColumnName="jobpostid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="HRManagementApp.Admin.Dashboard" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="candidateDashboard.Master.cs" Inherits="Candidate.Dashboard" %>
 
 <!DOCTYPE html>
 
@@ -316,27 +316,21 @@
                     <li class="active">
                         <a href="index.html">
                             <i class="material-icons">home</i>
-                            <span>Job Posting</span>
+                            <span>Careers</span>
                         </a>
                     </li>
                     <li>
-                        <a href="ApplicantList.aspx">
+                        <a href="AppliedJob.aspx">
                             <i class="material-icons">assignment</i>
-                            <span>Applicants List</span>
+                            <span>Applied Job Status</span>
                         </a>
                     </li>
                      <li>
-                        <a href="EmployeeProjectManagement.aspx">
-                            <i class="material-icons">contacts</i>
-                            <span>Employee Project Management</span>
+                        <a href="AccountSetting.aspx">
+                            <i class="material-icons">settings</i>
+                            <span>Account Setting</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="Tasks.aspx">
-                            <i class="material-icons">description</i>
-                            <span>Task Management</span>
-                        </a>
-                    </li>                                       
+                    </li>                                   
                 </ul>
             </div>
             <!-- #Menu -->
@@ -500,7 +494,7 @@
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
-         $(document).ready(()=> {
+         $(document).ready(function () {
              $('#txtDate').bootstrapMaterialDatePicker({ time: false });             
          });
 

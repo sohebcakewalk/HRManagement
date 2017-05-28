@@ -8,7 +8,7 @@
 //}
 
 angular.module('app', [])    
-    .controller('MyController', function($scope) {
+    .controller('MyController', ($scope)=>{
     $scope.z = [1,2,3];
     $scope.display = function (x) {   //module name
         console.log(localStorage.getItem("lastname"));

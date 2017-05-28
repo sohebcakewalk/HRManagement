@@ -15,7 +15,7 @@ namespace HRManagementApp.Services
     public partial class JobsAppliedFor
     {
         public int id { get; set; }
-        public Nullable<int> jobpostid { get; set; }
+        public Nullable<long> jobpostid { get; set; }
         public Nullable<int> candidateid { get; set; }
         public Nullable<System.DateTime> applydate { get; set; }
         public string status { get; set; }

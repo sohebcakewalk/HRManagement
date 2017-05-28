@@ -74,15 +74,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ApplicantList.aspx" />
     <Content Include="Admin\Js\adminUser.js" />
+    <Content Include="Admin\Js\ApplicantList.js" />
     <Content Include="Admin\UserSignup.aspx" />
     <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="Admin\Js\EmployeeProjectManagement.js" />
     <Content Include="Admin\Js\tasks.js" />
     <Content Include="Admin\Tasks.aspx" />
+    <Content Include="Admin\candidate.js" />
+    <Content Include="Admin\CandidateDetails.aspx" />
+    <Content Include="Admin\JobCreate.aspx" />
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="Lib\Plugins\bootboxalert\bootbox.min.js" />
+    <Content Include="Lib\Plugins\jquery\jquery.easing.min.js" />
+    <Content Include="Lib\Plugins\jquery\scrolling-nav.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <EntityDeploy Include="Services\HREntity.edmx">
@@ -222,6 +229,9 @@
     <Content Include="Lib\Css\PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2" />
     <Content Include="Lib\Css\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2" />
     <Content Include="Lib\Css\UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="User\AccountSetting.aspx" />
+    <Content Include="User\AppliedJob.aspx" />
+    <Content Include="User\candidateDashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3487,7 +3497,9 @@
     <Content Include="Lib\Plugins\waitme\waitMe.js" />
     <Content Include="Lib\Plugins\waitme\waitMe.min.css" />
     <Content Include="Lib\Plugins\waitme\waitMe.min.js" />
+    <Content Include="User\default.aspx" />
     <Content Include="User\ForgotPassword.aspx" />
+    <Content Include="User\Js\jobslisting.js" />
     <Content Include="User\Signin.aspx" />
     <Content Include="User\Signup.aspx" />
     <Content Include="User\user.js" />
@@ -3496,6 +3508,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ApplicantList.aspx.cs">
+      <DependentUpon>ApplicantList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ApplicantList.aspx.designer.cs">
+      <DependentUpon>ApplicantList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CandidateDetails.aspx.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CandidateDetails.aspx.designer.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Dashboard.Master.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.Master</DependentUpon>
@@ -3517,6 +3543,13 @@
     <Compile Include="Admin\EmployeeProjectManagement.aspx.designer.cs">
       <DependentUpon>EmployeeProjectManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\JobCreate.aspx.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\JobCreate.aspx.designer.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3537,6 +3570,9 @@
     </Compile>
     <Compile Include="Admin\UserSignup.aspx.designer.cs">
       <DependentUpon>UserSignup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BaseAdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -3617,7 +3653,6 @@
     <Compile Include="Services\UiModule.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\User.cs" />
     <Compile Include="Services\UserGrade.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
@@ -3629,6 +3664,34 @@
     </Compile>
     <Compile Include="Services\UserSkillset.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User\AccountSetting.aspx.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\AccountSetting.aspx.designer.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\AppliedJob.aspx.cs">
+      <DependentUpon>AppliedJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\AppliedJob.aspx.designer.cs">
+      <DependentUpon>AppliedJob.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\candidateDashboard.Master.cs">
+      <DependentUpon>candidateDashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\candidateDashboard.Master.designer.cs">
+      <DependentUpon>candidateDashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
@@ -3653,7 +3716,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Candidate\" />
     <Folder Include="Lib\Images\" />
   </ItemGroup>
   <ItemGroup>
