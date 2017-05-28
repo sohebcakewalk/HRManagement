@@ -13,6 +13,9 @@
             objAdmin.bindBranch();
             objAdmin.bindReportingTo();
             objAdmin.signUpAdmin();
+            objAdmin.GetData();
+            objAdmin.bindCandidate();
+            objAdmin.candidateChange();
         });
     </script>
 </asp:Content>
@@ -53,25 +56,25 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" name="name" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" id="fname" required>
                                         <label class="form-label">First Name*</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" name="surname" class="form-control" required>
+                                        <input type="text" name="surname" class="form-control" id="sname" required>
                                         <label class="form-label">Last Name*</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="email" name="email" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" id="email" required>
                                         <label class="form-label">Email*</label>
                                     </div>
                                 </div>
@@ -111,7 +114,7 @@
                                         <i class="material-icons">phone</i>
                                     </span>
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="namecontact" minlength="10" placeholder="Contact" required>
+                                        <input type="text" class="form-control" name="namecontact" minlength="10" placeholder="Contact" required id="phone">
                                     </div>
                                 </div>
                             </div>
@@ -204,11 +207,8 @@
 
 
         <div class="row clearfix">
-
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
                 <div class="card">
-
                     <div class="header">
                         <h2>Employee List</h2>
                     </div>
