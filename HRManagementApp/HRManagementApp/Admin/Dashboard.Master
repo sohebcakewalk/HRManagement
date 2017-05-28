@@ -53,6 +53,8 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../Lib/Css/themes/all-themes.css" rel="stylesheet" />
 
+    <link href="../Lib/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -815,7 +817,7 @@
 
     <script type="text/javascript">
          $(document).ready(function () {
-             $('#txtDate').bootstrapMaterialDatePicker({ time: false});
+             $('#txtDate').bootstrapMaterialDatePicker({ time: false });             
          });
     </script> 
 
@@ -856,6 +858,9 @@
 
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="../Lib/Plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="../Lib/plugins/jquery-steps/jquery.steps.js"></script>
+     <script src="../Lib/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="../Lib/Js/pages/forms/form-wizard-with_validation.js"></script>
 
     <%--<!-- Demo Js -->
     <script src="../Lib/Js/demo.js"></script>--%>

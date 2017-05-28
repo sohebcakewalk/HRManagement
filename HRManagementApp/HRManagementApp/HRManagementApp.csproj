@@ -75,9 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\adminUser.js" />
-    <Content Include="Admin\Signup.aspx" />
     <Content Include="Admin\UserSignup.aspx" />
-
     <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
@@ -6861,13 +6859,6 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Signup.aspx.cs">
-      <DependentUpon>Signup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Signup.aspx.designer.cs">
-      <DependentUpon>Signup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserSignup.aspx.cs">
       <DependentUpon>UserSignup.aspx</DependentUpon>

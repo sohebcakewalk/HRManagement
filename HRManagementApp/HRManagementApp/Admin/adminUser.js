@@ -4,7 +4,7 @@
 
     }
     adminLogin() {
-        const me = this;
+        const me = this;      
         //me.fillByMemory();
         $('#sign_in').on('submit', (e, data) => {
             if ($('#sign_in').valid()) {
@@ -19,6 +19,54 @@
             e.preventDefault();
             return false;
         })
+    }
+    bindRoles() {
+        let objService = new Service();
+        let objajax = objService.ajax("roles", objService.POST,"{}");
+        objajax.done(function (response) {           
+            let arrData = JSON.parse(response.d);           
+            let options = $("#drpRole");
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Roles</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let i = 0; i < arrData.length; i++) {
+                options.append($("<option />").val(arrData[i].roleId).text(arrData[i].role));
+                liString += `<li data-original-index="${i+1}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${arrData[i].role}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+
+            }
+            $(".dropdown-menu.inner")[2].innerHTML = liString; 
+            //options.prev()[0].innerHTML = liString
+        });
+    }
+    bindGrades() {
+        let objService = new Service();
+        let objajax = objService.ajax("grades", objService.POST, "{}");
+        objajax.done(function (response) {
+            let arrData = JSON.parse(response.d);            
+            let options = $("#drpGrade");
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Grades</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let i = 0; i < arrData.length; i++) {               
+                options.append($("<option />").val(arrData[i].gradeId).text(arrData[i].grade));
+                liString += `<li data-original-index="${i+1}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${arrData[i].grade}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+               
+            }
+            $(".dropdown-menu.inner")[0].innerHTML = liString
+           
+        });
+    }
+    bindBranch() {
+        let objService = new Service();
+        let objajax = objService.ajax("branches", objService.POST, "{}");
+        objajax.done(function (response) {           
+            let arrData = JSON.parse(response.d);            
+            var options = $("#drpBranch");
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Branches</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let i = 0; i < arrData.length; i++) {
+                options.append($("<option />").val(arrData[i].branchId).text(arrData[i].branchName));
+                liString += `<li data-original-index="${i+1}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${arrData[i].branchName}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+
+            }
+           $(".dropdown-menu.inner")[1].innerHTML = liString
+            //options.prev()[0].innerHTML = liString
+        });
     }
     signUpAdmin() {
 
