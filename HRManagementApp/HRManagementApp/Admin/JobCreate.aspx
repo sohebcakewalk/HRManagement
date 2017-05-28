@@ -25,7 +25,7 @@
                             <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select name="skills" class="form-control show-tick" multiple>
+                                            <select name="skills" data-live-search="true" class="form-control show-tick" multiple>
                                             <option>C#</option>
                                             <option>.Net</option>
                                             <option>ExtJs</option>

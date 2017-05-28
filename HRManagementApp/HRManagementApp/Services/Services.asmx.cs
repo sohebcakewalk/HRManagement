@@ -306,14 +306,25 @@ namespace HRManagementApp.Services
             Candidate candidate = new Candidate();
             using (HREntities db = new HREntities())
             {
-                
-                candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
-                if (candidate != null) {
-                    candidate.skillset = skillset;
-                    candidate.overallexperience = experience;
-                    candidate.biodatapath = biodata;
+                try
+                {
+                    candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
+                    if (candidate != null)
+                    {
+                        candidate.skillset = skillset;
+                        candidate.overallexperience = experience;
+                        candidate.biodatapath = biodata;
+                    }
+                    db.SaveChanges();
+
                 }
-                db.SaveChanges();
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+               
             }
             return userId;
         }

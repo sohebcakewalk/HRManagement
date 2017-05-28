@@ -12,83 +12,36 @@
 
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
                         <div class="body">
                              <form id="frmCandidateDetails">
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
-                                        <label for="skills">Skills</label>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <%--<div class="demo-checkbox">
-                                            <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-red" checked />
-                                            <label for="md_checkbox_21">RED</label>
-                                            <input type="checkbox" id="md_checkbox_22" class="filled-in chk-col-pink" checked />
-                                            <label for="md_checkbox_22">PINK</label>
-                                            <input type="checkbox" id="md_checkbox_23" class="filled-in chk-col-purple" checked />
-                                            <label for="md_checkbox_23">PURPLE</label>
-                                            <input type="checkbox" id="md_checkbox_24" class="filled-in chk-col-deep-purple" checked />
-                                            <label for="md_checkbox_24">DEEP PURPLE</label>
-                                            <input type="checkbox" id="md_checkbox_25" class="filled-in chk-col-indigo" checked />
-                                            <label for="md_checkbox_25">INDIGO</label>
-                                            <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-red" checked />
-                                            <label for="md_checkbox_21">RED</label>
-                                            <input type="checkbox" id="md_checkbox_22" class="filled-in chk-col-pink" checked />
-                                            <label for="md_checkbox_22">PINK</label>
-                                            <input type="checkbox" id="md_checkbox_23" class="filled-in chk-col-purple" checked />
-                                            <label for="md_checkbox_23">PURPLE</label>
-                                            <input type="checkbox" id="md_checkbox_24" class="filled-in chk-col-deep-purple" checked />
-                                            <label for="md_checkbox_24">DEEP PURPLE</label>
-                                            <input type="checkbox" id="md_checkbox_25" class="filled-in chk-col-indigo" checked />
-                                            <label for="md_checkbox_25">INDIGO</label>
-                                        </div>--%>
-                                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-5">
-                                            <div class="form-group demo-tagsinput-area">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="tagsinput" data-role="tagsinput" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 
-                                
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
-                                        <label for="email_address_2">Total Experience</label>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-sm-4">
-                                            <select class="form-control show-tick" name="totalexperience">
-                                                <option value="">-- Please select --</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
+                                  <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select name="tagsinput" data-live-search="true" class="form-control show-tick" multiple>
+                                                <option>C#</option>
+                                                <option>.Net</option>
+                                                <option>ExtJs</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row clearfix">
-                                    </div>
                                 </div>
-                                 <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
-                                        <label for="skills">Bio Data</label>
+
+                                 <div class="col-sm-12">
+                                    <input type="number" class="form-control" min="1" name="totalexperience" placeholder="Number of Positions" required autofocus>
+                                </div>
+                                <div class="col-sm-12">
+                                        <label for="skills">Upload your Resume</label>
                                     </div>
-                                    <div class="row clearfix">
-                                         <label class="btn btn-default btn-file">
+                                 <div class="col-sm-12">
+                                     <label class="btn btn-default btn-file form-control"> 
                                             <input name="biodata" id="biodata" type="file" hidden>
-                                        </label>
-                                    </div>
-                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
-                                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
-                                    </div>
+                                    </label>
                                 </div>
-                                
+                                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
+                                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                                </div>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
