@@ -557,6 +557,7 @@ namespace HRManagementApp.Services
 
 
         [WebMethod(EnableSession = true)]
+
         public string applyForJob(string jobId)
         {
             try
@@ -574,30 +575,62 @@ namespace HRManagementApp.Services
                     }
                     else { HttpContext.Current.Response.Redirect("~/User/Signin.aspx"); }
                 }
-                
+
                 using (HREntities db = new HREntities())
                 {
-                    var data = db.JobsAppliedFors.Where(x=>x.candidateid== Convert.ToInt32(userId)).ToList();
+                    var data = db.JobsAppliedFors.Where(x => x.candidateid == Convert.ToInt32(userId)).ToList();
                     if (data.Count > 0)
                     {
                         return "Already Applied";
                     }
-                    else {
+                    else
+                    {
 
-                        var job= db.jobPosts.Where(x => x.jobId == Convert.ToInt32(jobId)).FirstOrDefault();
+                        var job = db.jobPosts.Where(x => x.jobId == Convert.ToInt32(jobId)).FirstOrDefault();
 
                         JobsAppliedFor objJob = new JobsAppliedFor()
                         {
                             applydate = DateTime.Today,
-                             branchid= job.branchid,
+                            branchid = job.branchid,
                             jobpostid = Convert.ToInt32(jobId),
                             candidateid = Convert.ToInt32(userId),
-                            createddate= DateTime.Today
+                            createddate = DateTime.Today
                         };
                         db.SaveChanges();
                         return JsonConvert.SerializeObject(objJob);
                     }
-                   
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+            public string GetApplicantList()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    //var data = (from ja in db.JobsAppliedFors
+                    //            join jp in db.jobPosts on long.Parse(ja.jobpostid) equals jp.jobId
+                    //            join d in db.Candidates on ja.candidateid equals d.id
+                    //            select (new
+                    //            {
+                    //                jp.jobTilte,
+                    //                d.firstname,
+                    //                d.lastname,
+                    //                d.contact,
+                    //                d.skillindividual,
+                    //                d.skillset,
+                    //                ja.applydate
+                    //            })).ToList();
+                    //return JsonConvert.SerializeObject(data);
+                    return "";
                 }
             }
             catch (Exception)

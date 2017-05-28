@@ -19,7 +19,7 @@ class EmpProjManagement {
             table.find("tr:gt(0)").remove();; // empty table
 
 
-            table.append(`<thead> <tr><th>User Name</th> <th>Client Name</th> <th>ProjectName Name</th> <th>Modules</th><th>Position</th><th>Estimated Date</th></tr></thead><tbody>`);
+            table.append(`<thead> <tr><th>User Name</th> <th>Client Name</th> <th>Project Name</th> <th>Modules</th><th>Position</th><th>Estimated Date</th></tr></thead><tbody>`);
             for (let n of arrData) {
                 table.append(`<tr><td>${n.userName}</td><td>${n.clientName}</td><td>${n.projectName}</td><td>${n.modules}</td><td>${n.position}</td><td>${n.estimatedclosedate}</td></tr>`);
             }
