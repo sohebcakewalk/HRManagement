@@ -11,7 +11,7 @@
                 let arrData = $("#sign_in").serializeArray();
                 let objService = new Service();
                 let objajax = objService.ajax("ValidateAdminUser", objService.POST, `{userName: "${arrData[0].value}" ,password:"${arrData[1].value}"}`)
-                objajax.done(function (response) {
+                objajax.done((response)=> {
                     
 
                     if (response.d === true) {
@@ -116,7 +116,7 @@
 
                 let objService = new Service();
 
-                objService.ajax("createAdminUser", objService.POST, objData).then(function (response) {
+                objService.ajax("createAdminUser", objService.POST, objData).then((response)=> {
                     
                     if (response.d === true) {
 
