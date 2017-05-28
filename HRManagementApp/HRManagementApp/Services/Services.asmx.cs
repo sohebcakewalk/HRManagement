@@ -464,7 +464,7 @@ namespace HRManagementApp.Services
                     skillList = db.Skills.ToList();
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }
@@ -484,7 +484,7 @@ namespace HRManagementApp.Services
                     moduleList = db.ProjectModules.OrderBy(a => a.modulename).ToList();
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }
@@ -558,35 +558,44 @@ namespace HRManagementApp.Services
 
         [WebMethod(EnableSession = true)]
 
-        public string applyForJob(string jobId)
+        public string ApplyForJob(string jobId)
         {
             try
             {
-                bool flagSucess = false;
+                //bool flagSucess = false;
                 int userId = 0;
-                if (Session["adminuser"] != null)
+                
+                if (Session["candidateuser"] != null)
                 {
-                    string currentUser = Session["adminuser"].ToString();
+                    string currentUser = Session["candidateuser"].ToString();
 
                     if (currentUser != null)
                     {
                         userId = int.Parse(currentUser.Split('|')[0]);
 
                     }
-                    else { HttpContext.Current.Response.Redirect("~/User/Signin.aspx"); }
+                    else {
+                        // HttpContext.Current.Response.Redirect("~/User/Signin.aspx");
+                        return "unauthorised";
+                    }
+                }else
+                {
+                    //HttpContext.Current.Response.Redirect("~/User/Signin.aspx");
+                    return "unauthorised";
                 }
 
                 using (HREntities db = new HREntities())
                 {
-                    var data = db.JobsAppliedFors.Where(x => x.candidateid == Convert.ToInt32(userId)).ToList();
+                    long lngJobid = long.Parse(jobId);
+
+                    var data = db.JobsAppliedFors.Where(x=> x.candidateid == userId   && x.jobpostid == lngJobid).ToList();
                     if (data.Count > 0)
                     {
                         return "Already Applied";
                     }
-                    else
-                    {
-
-                        var job = db.jobPosts.Where(x => x.jobId == Convert.ToInt32(jobId)).FirstOrDefault();
+                    else{                  
+                        
+                        var job= db.jobPosts.Where(x => x.jobId == lngJobid).FirstOrDefault();
 
                         JobsAppliedFor objJob = new JobsAppliedFor()
                         {
@@ -596,7 +605,10 @@ namespace HRManagementApp.Services
                             candidateid = Convert.ToInt32(userId),
                             createddate = DateTime.Today
                         };
+                        db.JobsAppliedFors.Add(objJob);
                         db.SaveChanges();
+
+
                         return JsonConvert.SerializeObject(objJob);
                     }
 
@@ -610,7 +622,7 @@ namespace HRManagementApp.Services
             }
         }
 
-            public string GetApplicantList()
+        public string GetApplicantList()
         {
             try
             {

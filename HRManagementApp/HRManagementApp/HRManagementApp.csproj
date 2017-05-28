@@ -88,6 +88,8 @@
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="Lib\Plugins\bootboxalert\bootbox.min.js" />
+    <Content Include="Lib\Plugins\jquery\jquery.easing.min.js" />
+    <Content Include="Lib\Plugins\jquery\scrolling-nav.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <EntityDeploy Include="Services\HREntity.edmx">
@@ -227,6 +229,7 @@
     <Content Include="Lib\Css\PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2" />
     <Content Include="Lib\Css\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2" />
     <Content Include="Lib\Css\UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="User\candidateDashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3492,7 +3495,9 @@
     <Content Include="Lib\Plugins\waitme\waitMe.js" />
     <Content Include="Lib\Plugins\waitme\waitMe.min.css" />
     <Content Include="Lib\Plugins\waitme\waitMe.min.js" />
+    <Content Include="User\default.aspx" />
     <Content Include="User\ForgotPassword.aspx" />
+    <Content Include="User\Js\jobslisting.js" />
     <Content Include="User\Signin.aspx" />
     <Content Include="User\Signup.aspx" />
     <Content Include="User\user.js" />
@@ -3654,6 +3659,20 @@
     </Compile>
     <Compile Include="Services\UserSkillset.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User\candidateDashboard.Master.cs">
+      <DependentUpon>candidateDashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\candidateDashboard.Master.designer.cs">
+      <DependentUpon>candidateDashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
