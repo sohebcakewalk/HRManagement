@@ -20,31 +20,153 @@ namespace HRManagementApp.Services
     [System.Web.Script.Services.ScriptService]
     public class Services : System.Web.Services.WebService
     {
-        [WebMethod]
-        public string getUser()
-        {
-
-            return "sumit";
-        }
         [WebMethod(EnableSession = true)]
         public bool ValidateUser(string userName, string password)
         {
             Boolean flag = false;
-            using (HREntities db = new HREntities()) {
-                var user = db.Candidates.Where(x => x.emialid == userName && x.password == password).ToList();
-                if (user.Count > 0)
+            using (HREntities db = new HREntities())
+            {
+                try
                 {
-                    flag = true;
-                    Session["user"] = user;
+                    var user = db.Candidates.Where(x => x.emialid == userName && x.password == password).ToList();
+                    if (user.Count > 0)
+                    {
+                        flag = true;
+                        Session["user"] = user;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return flag;
+        }
+        [WebMethod(EnableSession = true)]
+        public bool ValidateAdminUser(string userName, string password)
+        {
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var user = db.UserManagements.Where(x => x.email == userName && x.password == password).ToList();
+                    if (user.Count > 0)
+                    {
+                        flag = true;
+                        Session["user"] = user;
+                    }
+                }
+                catch (Exception ex)
+                {
+
                 }
             }
             return flag;
         }
         [WebMethod]
-        public string createUser(string name, string email, string password)
+        public bool createUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        {
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var Candidate = db.Set<Candidate>();
+                    Candidate.Add(new Candidate { firstname = fname, lastname = lname, emialid = email, password = password, contact = phNumber, gender = gender });
+                    db.SaveChanges();
+                    flag = true;
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+            return flag;
+        }
+
+
+        [WebMethod]
+        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        {
+            Boolean flag = false;
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var Candidate = db.Set<UserManagement>();
+                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender });
+                    db.SaveChanges();
+                    flag = true;
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return flag;
+        }
+
+
+        [WebMethod]
+        public string roles()
+        {
+            List<UserRole> roleList = new List<UserRole>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    roleList = db.UserRoles.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(roleList);
+        }
+        [WebMethod]
+        public string branches()
         {
 
-            return name;
+            List<Branch> branchList = new List<Branch>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    branchList = db.Branches.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(branchList);
+
+        }
+        [WebMethod]
+        public string grades()
+        {
+            List<UserGrade> gradeList = new List<UserGrade>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    gradeList = db.UserGrades.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return JsonConvert.SerializeObject(gradeList);
         }
 
         [WebMethod]
@@ -77,9 +199,6 @@ namespace HRManagementApp.Services
             }
 
         }
-
-
-
         [WebMethod]
         public bool SaveTask(string Taskname, string gitUrl, int timeTaken)
         {
@@ -98,11 +217,9 @@ namespace HRManagementApp.Services
                 flagSucess = true;
             }
 
+
             return flagSucess;
-
-
         }
-
         [WebMethod]
         public List<ModelEmpProjManagement> GetEmpProjManagementList()
         {
@@ -123,7 +240,7 @@ namespace HRManagementApp.Services
                                     estimatedclosedate = a.estimatedclosedate,
                                     createddate = DateTime.UtcNow
 
-                });
+                                });
                     return data.ToList();
                 }
             }
@@ -132,9 +249,45 @@ namespace HRManagementApp.Services
                 throw;
             }
         }
+        [WebMethod(EnableSession = true)]
+        public string UserManagement()
+        {
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var data = (from a in db.UserManagements
+                                select new Models.UserManage
+                                {
+                                    firstName = a.firstName,
+                                    LastName = a.LastName,
+                                    email = a.email,
+                                    gender = a.gender,
+                                    phone = a.phone,
+                                    dob = a.dob,
+                                    address1 = a.address1,
+                                    address2 = a.address2,
+                                    createDate = a.createDate,
+                                    status = a.status,
+                                    roles = a.roles,
+                                    grade = a.grade,
+                                    gradeChangeDate = a.gradeChangeDate,
+                                    registeredBy = a.registeredBy,
+                                    branchId = a.branchId,
+                                    reportingTo = a.reportingTo
+
+                                });
+                    return JsonConvert.SerializeObject(data.ToList<Models.UserManage>());
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
 
         [WebMethod]
-        public bool SaveEmpProjManagement(int userid, int clientid, int projectid,string modules,int branchid, string position, DateTime estimatedclosedate)
+        public bool SaveEmpProjManagement(int userid, int clientid, int projectid, string modules, int branchid, string position, DateTime estimatedclosedate)
         {
             bool flagSucess = false;
 
@@ -158,14 +311,14 @@ namespace HRManagementApp.Services
                 flagSucess = true;
             }
 
+
             return flagSucess;
 
         }
-
-
     }
 
-
-   
-
 }
+
+
+
+
