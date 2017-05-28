@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
-    <script src="adminUser.js"></script>
+    <script src="JS/adminUser.js"></script>
     <script src="../Services/service.js"></script>
     <script>
         $(document).ready(function () {

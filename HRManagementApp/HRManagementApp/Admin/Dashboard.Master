@@ -55,6 +55,8 @@
 
     <link href="../Lib/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
+    <script src="../Lib/Plugins/bootboxalert/bootbox.min.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
