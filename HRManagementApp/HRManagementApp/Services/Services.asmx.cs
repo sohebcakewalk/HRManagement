@@ -554,6 +554,60 @@ namespace HRManagementApp.Services
 
 
         }
+
+
+        [WebMethod(EnableSession = true)]
+        public string applyForJob(string jobId)
+        {
+            try
+            {
+                bool flagSucess = false;
+                int userId = 0;
+                if (Session["adminuser"] != null)
+                {
+                    string currentUser = Session["adminuser"].ToString();
+
+                    if (currentUser != null)
+                    {
+                        userId = int.Parse(currentUser.Split('|')[0]);
+
+                    }
+                    else { HttpContext.Current.Response.Redirect("~/User/Signin.aspx"); }
+                }
+                
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.JobsAppliedFors.Where(x=>x.candidateid== Convert.ToInt32(userId)).ToList();
+                    if (data.Count > 0)
+                    {
+                        return "Already Applied";
+                    }
+                    else {
+
+                        var job= db.jobPosts.Where(x => x.jobId == Convert.ToInt32(jobId)).FirstOrDefault();
+
+                        JobsAppliedFor objJob = new JobsAppliedFor()
+                        {
+                            applydate = DateTime.Today,
+                             branchid= job.branchid,
+                            jobpostid = Convert.ToInt32(jobId),
+                            candidateid = Convert.ToInt32(userId),
+                            createddate= DateTime.Today
+                        };
+                        db.SaveChanges();
+                        return JsonConvert.SerializeObject(objJob);
+                    }
+                   
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 
 }

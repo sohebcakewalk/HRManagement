@@ -24,5 +24,6 @@ namespace HRManagementApp.Services
         public Nullable<long> userId { get; set; }
         public Nullable<long> approvedBy { get; set; }
         public string remarks { get; set; }
+        public Nullable<int> branchid { get; set; }
     }
 }

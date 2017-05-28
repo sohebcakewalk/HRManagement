@@ -10,7 +10,7 @@ class EmpProjManagement {
 
 
 
-        objajax.then(function (response) {
+        objajax.then( (response)=> {
 
             // console.log(response.d);
             let arrData = JSON.parse(response.d);
@@ -61,11 +61,11 @@ class EmpProjManagement {
         let data = `{userid:"${userid.val()}",projectid:"${projectid.val()}",modules:"${mdl} ",position:"${position.val()}",estimatedclosedate:"${estimatedclosedate.val()}"}`;
         let objService = new Service();
         let objajax = objService.ajax("SaveEmpProjManagement", objService.POST, data)
-        objajax.done(function (response) {
+        objajax.done( (response)=> {
             alert(response.d)
         });
 
-        objajax.then(function (response) {
+        objajax.then((response)=> {
 
             console.log(response.d);
 
@@ -86,9 +86,9 @@ class EmpProjManagement {
     bindReportingTo() {
         let objService = new Service();
         let objajax = objService.ajax("UserManagement", objService.POST, "{}");
-        objajax.done(function (response) {
+        objajax.done((response)=> {
             let arrData = JSON.parse(response.d);
-            var options = $("#cbxuserlist");
+            let options = $("#cbxuserlist");
             let liString = ``;
             let j = 0;
             for (let i of arrData) {
@@ -105,7 +105,7 @@ class EmpProjManagement {
     bindProjectList() {
         let objService = new Service();
         let objajax = objService.ajax("projectList", objService.POST, "{}");
-        objajax.done(function (response) {
+        objajax.done((response)=> {
             let arrData = JSON.parse(response.d);
             let options = $("#cbxprojectlist");
             let liString = ``;
@@ -124,7 +124,7 @@ class EmpProjManagement {
     bindModuleList() {
         let objService = new Service();
         let objajax = objService.ajax("moduleList", objService.POST, "{}");
-        objajax.done(function (response) {
+        objajax.done((response)=> {
             let arrData = JSON.parse(response.d);
             let options = $("#cbxmodulelist");
             let liString = ``;
@@ -142,7 +142,7 @@ class EmpProjManagement {
     bindPositionList() {
         let objService = new Service();
         let objajax = objService.ajax("grades", objService.POST, "{}");
-        objajax.done(function (response) {
+        objajax.done((response)=> {
             let arrData = JSON.parse(response.d);
             let options = $("#cbxpositionlist");
             let liString = ``;
