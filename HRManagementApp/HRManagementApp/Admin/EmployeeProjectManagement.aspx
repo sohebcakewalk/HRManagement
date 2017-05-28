@@ -10,7 +10,10 @@
 
         jQuery(document).ready(function () {
             let objEmpPM = new EmpProjManagement();
+            objEmpPM.bindReportingTo();
             objEmpPM.bindProjectList();
+            //objEmpPM.bindModuleList();
+            objEmpPM.bindPositionList();
             objEmpPM.GetData();
         });
 
@@ -48,7 +51,7 @@
                                     </p>
                                     <select class="form-control show-tick" data-live-search="true" id="cbxuserlist">
                                         <option value="">-- User List --</option>
-                                        <option value="1">Asif</option>
+                                        <%--<option value="1">Asif</option>
                                         <option value="2">Soheb</option>
                                         <option value="3">Sumit</option>
                                         <option value="4">Deniyal</option>
@@ -58,7 +61,7 @@
                                         <option value="8">Sohel</option>
                                         <option value="9">Jignesh</option>
                                         <option value="10">Nisarg</option>
-                                        <option value="11">Darshan</option>
+                                        <option value="11">Darshan</option>--%>
                                     </select>
                                 </div>
                             </div>
@@ -82,13 +85,15 @@
                                     <p>
                                         <b>Module List</b>
                                     </p>
-                                    <select class="form-control show-tick" data-live-search="true" id="cbxmodulelist" multiple>
-                                        <option value="">-- Module List --</option>
-                                        <option value="Module A">Module A</option>
-                                        <option value="Module B">Module B</option>
-                                        <option value="Module C">Module C</option>
-                                        <option value="Module D">Module D</option>
-                                        <option value="Module E">Module E</option>
+                                    <select class="form-control show-tick" data-live-search="true" id="cbxmodulelist" multiple>                                        
+                                        <option value="Annotation">Annotation</option>
+                                        <option value="Assignment">Assignment</option>
+                                        <option value="CDS">CDS</option>
+                                        <option value="Clinical Data">Clinical Data</option>
+                                        <option value="Data Extracttion">Data Extracttion</option>
+                                        <option value="Export Comparison">Export Comparison</option>
+                                        <option value="Import">Import</option>
+                                        <option value="Synonmn">Synonmn</option>
                                     </select>
                                 </div>
                             </div>
@@ -101,10 +106,10 @@
                                     </p>
                                     <select class="form-control show-tick" data-live-search="true" id="cbxpositionlist" required>
                                         <option value="">-- Position List --</option>
-                                        <option value="Sr. Developer">Sr. Developer</option>
+                                        <%--<option value="Sr. Developer">Sr. Developer</option>
                                         <option value="Jr. Developer">Jr. Developer</option>
                                         <option value="Team Leader">Team Leader</option>
-                                        <option value="Project Manager">Project Manager</option>
+                                        <option value="Project Manager">Project Manager</option>--%>
                                     </select>
                                 </div>
                             </div>
@@ -119,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                         <button class="btn btn-primary waves-effect" onclick="new EmpProjManagement().SaveData();">SUBMIT</button>
                     </form>
                 </div>
