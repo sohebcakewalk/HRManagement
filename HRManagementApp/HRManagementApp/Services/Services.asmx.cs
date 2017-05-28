@@ -22,7 +22,7 @@ namespace HRManagementApp.Services
     {
 
         [WebMethod(EnableSession = true)]
-        public bool ValidateUser(string userName, string password)
+        public object ValidateUser(string userName, string password)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -33,7 +33,7 @@ namespace HRManagementApp.Services
                     if (user.Count > 0)
                     {
                         flag = true;
-                        Session["candidateuser"] = string.Format("{0}|{1}",user.FirstOrDefault().id, user.FirstOrDefault().emialid);
+                        Session["candidateuser"] = string.Format("{0}|{1}", user.FirstOrDefault().id, user.FirstOrDefault().emialid);
                     }
                 }
                 catch (Exception)
@@ -52,7 +52,7 @@ namespace HRManagementApp.Services
                 try
                 {
                     var user = db.UserManagements.Where(x => x.email == userName && x.password == password);
-                    if (user.Any ())
+                    if (user.Any())
                     {
                         flag = true;
                         Session["adminuser"] = string.Format("{0}|{1}", user.FirstOrDefault().userId, user.FirstOrDefault().email);
@@ -90,8 +90,9 @@ namespace HRManagementApp.Services
         }
 
 
+
         [WebMethod(EnableSession = true)]
-        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender, string address, string dob, string grade, string branch, string role, string reportingTo)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -99,7 +100,7 @@ namespace HRManagementApp.Services
                 try
                 {
                     var Candidate = db.Set<UserManagement>();
-                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender });
+                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender, address1 = address, dob = Convert.ToDateTime(dob), grade = grade, branchId = Convert.ToInt32(branch), roles = role, reportingTo = Convert.ToInt32(reportingTo) });
                     db.SaveChanges();
                     flag = true;
                 }
@@ -142,7 +143,7 @@ namespace HRManagementApp.Services
                     branchList = db.Branches.ToList();
 
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     throw;
                 }
@@ -205,7 +206,7 @@ namespace HRManagementApp.Services
 
 
         [WebMethod(EnableSession = true)]
-        public bool SaveTask(string Taskname, string gitUrl, int timeTaken,string recordid)
+        public bool SaveTask(string Taskname, string gitUrl, int timeTaken, string recordid)
         {
             bool flagSucess = false;
 
@@ -236,7 +237,8 @@ namespace HRManagementApp.Services
 
 
                     db.Tasks.Add(tsk);
-                }else
+                }
+                else
                 {
                     long Taskid = long.Parse(recordid);
 
@@ -272,11 +274,13 @@ namespace HRManagementApp.Services
                 {
                     var data = (from a in db.EmployeeProjectManagements
                                 join m1 in db.Clients on a.clientid equals m1.clientId
-                                join m2 in db.Projects on a.projectid equals m2.projectId                                
+                                join m2 in db.Projects on a.projectid equals m2.projectId    
+                                join u in db.UserManagements on a.userid equals u.userId
                                 select new ModelEmpProjManagement
                                 {
                                     id = a.id,
                                     userid = a.userid,
+                                    userName = u.email,
                                     clientid = a.clientid,
                                     clientName = m1.clientname,
                                     projectid = a.projectid,
@@ -306,6 +310,7 @@ namespace HRManagementApp.Services
                     var data = (from a in db.UserManagements
                                 select new Models.UserManage
                                 {
+
                                     userId = a.userId,
                                     firstName = a.firstName,
                                     LastName = a.LastName,
@@ -345,14 +350,14 @@ namespace HRManagementApp.Services
                 {
                     EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
-                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId ).FirstOrDefault();
-                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId ).FirstOrDefault();
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId).FirstOrDefault();
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId).FirstOrDefault();
 
                     tsk.userid = userid;
-                    tsk.clientid = cId;
+                    tsk.clientid = cId;                    
                     tsk.projectid = projectid;
                     tsk.modules = modules;
-                    tsk.branchid = bId;
+                    tsk.branchid = bId == null ? 1 : bId;
                     tsk.position = position;
                     tsk.estimatedclosedate = estimatedclosedate;
                     tsk.status = "Added";
@@ -370,20 +375,74 @@ namespace HRManagementApp.Services
 
                 throw;
             }
-            
+
             return flagSucess;
 
         }
 
         [WebMethod]
-        public string projectList()
+        public object getCandidate(int id)
         {
-            List<Project> projectList = new List<Project>();
+            object candidate;
+            using (HREntities db = new HREntities())
+            {
+                candidate = db.Candidates.Where(x => x.id == id).ToList();
+
+            }
+            return candidate;
+        }
+        [WebMethod(EnableSession = true)]
+        public bool updateCandidate(string skillset, int experience, string biodata)
+        {
+            bool flagSucess = false;
+            int userId = 0;
+            if (Session["user"] != null)
+            {
+
+                string currentUser = Session["adminuser"].ToString();
+
+                if (currentUser != null)
+                {
+                    userId = int.Parse(currentUser.Split('|')[0]);
+
+                }
+            }
+
+
+            Candidate candidate = new Candidate();
             using (HREntities db = new HREntities())
             {
                 try
                 {
-                    projectList = db.Projects.OrderBy(a=>a.projectName).ToList();
+                    candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
+                    if (candidate != null)
+                    {
+                        candidate.skillset = skillset;
+                        candidate.overallexperience = experience;
+                        candidate.biodatapath = biodata;
+                    }
+                    db.SaveChanges();
+                    flagSucess = true;
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            return flagSucess;
+        }
+        public string projectList()
+        {
+            List<Project> projectList = new List<Project>();
+
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    projectList = db.Projects.OrderBy(a => a.projectName).ToList();
 
                 }
                 catch (Exception ex)
@@ -394,6 +453,25 @@ namespace HRManagementApp.Services
             return JsonConvert.SerializeObject(projectList);
         }
 
+        [WebMethod(EnableSession = true)]
+        public string skills()
+        {
+            List<Skill> skillList = new List<Skill>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    skillList = db.Skills.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return JsonConvert.SerializeObject(skillList);
+        }
         [WebMethod]
         public string moduleList()
         {
@@ -402,6 +480,7 @@ namespace HRManagementApp.Services
             {
                 try
                 {
+
                     moduleList = db.ProjectModules.OrderBy(a => a.modulename).ToList();
 
                 }
@@ -412,8 +491,123 @@ namespace HRManagementApp.Services
             }
             return JsonConvert.SerializeObject(moduleList);
         }
+        [WebMethod(EnableSession = true)]
+        public bool createJob(string jobtitle, string skills, int noofvacancies, string remarks)
+        {
+            bool flagSucess = false;
+            int userId = 0;
+            if (Session["adminuser"] != null)
+            {
+
+                string currentUser = Session["adminuser"].ToString();
+
+                if (currentUser != null)
+                {
+                    userId = int.Parse(currentUser.Split('|')[0]);
+
+                }
+            }
+            jobPost jobpost = new jobPost();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    jobpost.createDate = DateTime.Now;
+                    jobpost.jobTilte = jobtitle;
+                    jobpost.skills = skills;
+                    jobpost.noOfVacancies = noofvacancies;
+                    jobpost.remarks = remarks;
+                    jobpost.userId = userId;
+                    jobpost.isActive = true;
+
+                    db.jobPosts.Add(jobpost);
+                    db.SaveChanges();
+                    flagSucess = true;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            return flagSucess;
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public string GetJobs()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.jobPosts.ToList();
+                    return JsonConvert.SerializeObject(data);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
 
+        }
+
+
+        [WebMethod(EnableSession = true)]
+        public string applyForJob(string jobId)
+        {
+            try
+            {
+                bool flagSucess = false;
+                int userId = 0;
+                if (Session["adminuser"] != null)
+                {
+                    string currentUser = Session["adminuser"].ToString();
+
+                    if (currentUser != null)
+                    {
+                        userId = int.Parse(currentUser.Split('|')[0]);
+
+                    }
+                    else { HttpContext.Current.Response.Redirect("~/User/Signin.aspx"); }
+                }
+                
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.JobsAppliedFors.Where(x=>x.candidateid== Convert.ToInt32(userId)).ToList();
+                    if (data.Count > 0)
+                    {
+                        return "Already Applied";
+                    }
+                    else {
+
+                        var job= db.jobPosts.Where(x => x.jobId == Convert.ToInt32(jobId)).FirstOrDefault();
+
+                        JobsAppliedFor objJob = new JobsAppliedFor()
+                        {
+                            applydate = DateTime.Today,
+                             branchid= job.branchid,
+                            jobpostid = Convert.ToInt32(jobId),
+                            candidateid = Convert.ToInt32(userId),
+                            createddate= DateTime.Today
+                        };
+                        db.SaveChanges();
+                        return JsonConvert.SerializeObject(objJob);
+                    }
+                   
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 
 }

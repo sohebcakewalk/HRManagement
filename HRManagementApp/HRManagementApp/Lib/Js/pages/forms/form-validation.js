@@ -39,7 +39,7 @@ $(function () {
             $(element).parents('.form-group').append(error);
         }
     });
-
+    
     //Custom Validations ===============================================================================
     //Date
     $.validator.addMethod('customdate', function (value, element) {
