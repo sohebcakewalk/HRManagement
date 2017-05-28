@@ -102,8 +102,6 @@
     <script>
         let objUser = new User();      
         objUser.login();
-        
-
     </script>
     <script src="../Lib/Js/admin.js"></script>    
     <script src="../Lib/Js/pages/examples/sign-in.js"></script>

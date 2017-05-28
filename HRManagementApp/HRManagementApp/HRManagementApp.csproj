@@ -80,6 +80,9 @@
     <Content Include="Admin\Js\EmployeeProjectManagement.js" />
     <Content Include="Admin\Js\tasks.js" />
     <Content Include="Admin\Tasks.aspx" />
+    <Content Include="Admin\candidate.js" />
+    <Content Include="Admin\CandidateDetails.aspx" />
+    <Content Include="Admin\JobCreate.aspx" />
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="MyController.js" />
@@ -3481,6 +3484,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\CandidateDetails.aspx.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CandidateDetails.aspx.designer.cs">
+      <DependentUpon>CandidateDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Dashboard.Master.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.Master</DependentUpon>
@@ -3501,6 +3511,13 @@
     </Compile>
     <Compile Include="Admin\EmployeeProjectManagement.aspx.designer.cs">
       <DependentUpon>EmployeeProjectManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\JobCreate.aspx.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\JobCreate.aspx.designer.cs">
+      <DependentUpon>JobCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -3602,7 +3619,6 @@
     <Compile Include="Services\UiModule.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\User.cs" />
     <Compile Include="Services\UserGrade.cs">
       <DependentUpon>HREntity.tt</DependentUpon>
     </Compile>
@@ -3638,7 +3654,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Candidate\" />
     <Folder Include="Lib\Images\" />
   </ItemGroup>
   <ItemGroup>

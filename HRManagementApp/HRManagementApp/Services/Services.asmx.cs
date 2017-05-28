@@ -27,7 +27,7 @@ namespace HRManagementApp.Services
             return "sumit";
         }
         [WebMethod(EnableSession = true)]
-        public bool ValidateUser(string userName, string password)
+        public object ValidateUser(string userName, string password)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -288,6 +288,35 @@ namespace HRManagementApp.Services
 
         }
 
+        [WebMethod]
+        public object getCandidate(int id)
+        {
+            object candidate;
+            using (HREntities db = new HREntities())
+            {
+                candidate = db.Candidates.Where(x => x.id == id).ToList();
+                
+            }
+            return candidate;
+        }
+        [WebMethod(EnableSession = true)]
+        public int updateCandidate(string skillset, int experience, string biodata)
+        {
+            int userId = Convert.ToInt16(HttpContext.Current.Session["UserID"].ToString());
+            Candidate candidate = new Candidate();
+            using (HREntities db = new HREntities())
+            {
+                
+                candidate = db.Candidates.Where(x => x.id == userId).FirstOrDefault();
+                if (candidate != null) {
+                    candidate.skillset = skillset;
+                    candidate.overallexperience = experience;
+                    candidate.biodatapath = biodata;
+                }
+                db.SaveChanges();
+            }
+            return userId;
+        }
     }
 
 }
