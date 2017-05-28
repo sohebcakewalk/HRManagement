@@ -25,7 +25,7 @@
 
                 let strJoblist = `<h4>${n.jobTilte}</h4><br><span>Skills required : ${n.skills}<br>Positions available: ${n.noOfVacancies}</span><br><p>${n.remarks}</p>`;
 
-                let strButton = `<button class= 'btn-primary' onclick="new JobListing().JobApplication(${n.jobid})" > Apply Now </button>'`
+                let strButton = `<button class= 'btn-primary' onclick="new JobListing().JobApplication(${n.jobId})" > Apply Now </button>'`
 
                 table.append(`<tr><td>${strJoblist}</td><td style='align:center;width:20%'>${strButton}</td></tr>`);
             }
@@ -54,6 +54,28 @@
 
 
     JobApplication(jobid ) {
+
+        let data = `{jobId: "${jobid}"}`;
+
+        let objService = new Service();
+        let objajax = objService.ajax("ApplyForJob", objService.POST, data);
+
+
+        objajax.then((response) => {
+
+            if (response.d === "Already Applied") {
+                alert("You have already applied for this job!");
+            } else if (response.d === "unauthorised") {
+                window.location = "/User/Signin.aspx";
+            }
+
+            else {
+
+                alert("You have sucessfully applied for this job");
+
+            }
+
+        });
 
 
 

@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="body" >
+                <div class="body">
                     <form id="form_validation">
                         <div class="row">
                             <div class="col-sm-4">
@@ -85,7 +85,7 @@
                                     <p>
                                         <b>Module List</b>
                                     </p>
-                                    <select class="form-control show-tick" data-live-search="true" id="cbxmodulelist" multiple>                                        
+                                    <select class="form-control show-tick" data-live-search="true" id="cbxmodulelist" multiple>
                                         <option value="Annotation">Annotation</option>
                                         <option value="Assignment">Assignment</option>
                                         <option value="CDS">CDS</option>
@@ -117,14 +117,14 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <p>
-                                        <b>Estimated Closed Date</b>
-                                    </p>
+                                            <b>Estimated Closed Date</b>
+                                        </p>
                                         <input type="text" id="txtDate" class="datepicker form-control" name="closedate" required>
                                         <%--<label class="form-label">Estimated Closed Date</label>--%>
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                         <button class="btn btn-primary waves-effect" onclick="new EmpProjManagement().SaveData();">SUBMIT</button>
                     </form>
                 </div>
@@ -134,7 +134,7 @@
     <!-- #END# Employee Project Management -->
 
 
-        <div class="row clearfix">
+    <div class="row clearfix">
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -144,17 +144,17 @@
                     <h2>Employee Project List</h2>
                 </div>
 
-                
+
                 <div class="body">
 
 
                     <table id="tblEmpProj" class="table table-bordered table-striped table-hover js-basic-example dataTable">
-
                     </table>
 
 
 
-                </div><!-- body -->
+                </div>
+                <!-- body -->
 
 
             </div>
