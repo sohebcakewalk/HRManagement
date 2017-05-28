@@ -6,7 +6,7 @@
 
     <script src="../Services/service.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(()=> {
             let objAdmin = new AdminUser();
             //objAdmin.bindRoles();
             objAdmin.bindGrades();

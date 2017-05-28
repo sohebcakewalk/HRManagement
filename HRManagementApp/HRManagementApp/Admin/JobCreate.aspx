@@ -70,7 +70,7 @@
     <script src="candidate.js"></script>
     <script src="../Services/service.js"></script>
      <script>
-         $(document).ready(function () {
+         $(document).ready(()=> {
              
              //candidate.bindSkills();
          });

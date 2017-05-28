@@ -13,13 +13,13 @@
             }
             let objService = new Service();
             let objajax = objService.ajax("updateCandidate", objService.POST, `{skillset: "${arrData[0].value}" ,experience:"${arrData[1].value}" ,biodata:"${filename}"}`)
-            objajax.done(function (response) {
+            objajax.done((response)=> {
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
                 console.log(response);
             });
-            objajax.error(function (response) {
+            objajax.error( (response) =>{
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
@@ -35,13 +35,13 @@
             let arrData = $("#frmJobCreation").serializeArray();
             let objService = new Service();
             let objajax = objService.ajax("createJob", objService.POST, `{jobtitle: "${arrData[0].value}" ,skills:"${arrData[1].value}" ,noofvacancies:"${arrData[2].value}",remarks:"${arrData[3].value}"}`)
-            objajax.done(function (response) {
+            objajax.done((response)=> {
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
                 console.log(response);
             });
-            objajax.error(function (response) {
+            objajax.error((response)=> {
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
@@ -54,7 +54,7 @@
     bindSkills() {
         let objService = new Service();
         let objajax = objService.ajax("skills", objService.POST, "{}");
-        objajax.done(function (response) {
+        objajax.done((response)=> {
             let arrData = JSON.parse(response.d);
             let options = $("#drpSkills");
             let liString = `<li data-original-index="0" ><a tabindex="0" class="" style="" data-tokens="null"><span class="text">--- Select Skills ----</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;

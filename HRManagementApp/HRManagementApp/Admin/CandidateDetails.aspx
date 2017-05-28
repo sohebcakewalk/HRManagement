@@ -64,7 +64,7 @@
     <script src="candidate.js"></script>
     <script src="../Services/service.js"></script>
      <script>
-         $(document).ready(function () {
+         $(document).ready(()=> {
              let candidate = new Candidate();
              candidate.updatecandidate();
              //candidate.bindSkills();

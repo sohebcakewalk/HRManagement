@@ -506,7 +506,7 @@
     <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
-         $(document).ready(function () {
+         $(document).ready(()=> {
              $('#txtDate').bootstrapMaterialDatePicker({ time: false });             
          });
 

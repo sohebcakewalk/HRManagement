@@ -8,7 +8,7 @@
 
     <script>
 
-        jQuery(document).ready(function () {
+        jQuery(document).ready(()=> {
             let objEmpPM = new EmpProjManagement();
             objEmpPM.bindReportingTo();
             objEmpPM.bindProjectList();
