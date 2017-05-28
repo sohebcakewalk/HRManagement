@@ -87,10 +87,10 @@ namespace HRManagementApp.Services
 
             return flag;
         }
-
+               
 
         [WebMethod]
-        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender, string address, string dob, string grade, string branch, string role, string reportingTo)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -98,7 +98,7 @@ namespace HRManagementApp.Services
                 try
                 {
                     var Candidate = db.Set<UserManagement>();
-                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender });
+                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender,address1=address,dob=Convert.ToDateTime(dob),grade=grade,branchId= Convert.ToInt32(branch), roles=role,reportingTo= Convert.ToInt32(reportingTo) });
                     db.SaveChanges();
                     flag = true;
                 }
@@ -259,6 +259,7 @@ namespace HRManagementApp.Services
                     var data = (from a in db.UserManagements
                                 select new Models.UserManage
                                 {
+                                    userId=a.userId,
                                     firstName = a.firstName,
                                     LastName = a.LastName,
                                     email = a.email,
