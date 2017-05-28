@@ -74,12 +74,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-
+    <Content Include="Admin\adminUser.js" />
+    <Content Include="Admin\UserSignup.aspx" />
     <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="Admin\Js\tasks.js" />
     <Content Include="Admin\Tasks.aspx" />
 
     <Content Include="app.js" />
+    <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <Content Include="require.js" />
@@ -6868,6 +6870,13 @@
     </Compile>
     <Compile Include="Admin\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserSignup.aspx.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserSignup.aspx.designer.cs">
+      <DependentUpon>UserSignup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
