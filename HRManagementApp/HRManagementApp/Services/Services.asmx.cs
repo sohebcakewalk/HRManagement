@@ -641,6 +641,26 @@ namespace HRManagementApp.Services
 
 
         }
+
+        [WebMethod(EnableSession = true)]
+        public string GetCandidateList()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.Candidates.ToList();
+                    return JsonConvert.SerializeObject(data);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 
 }

@@ -33,10 +33,8 @@
         // make a secvice call
 
         let objService = new Service();
-        let objajax = objService.ajax("GetEmpProjManagementList", objService.POST, `{}`)
+        let objajax = objService.ajax("UserManagement", objService.POST, `{}`)
         console.log(objajax);
-
-
 
         objajax.then(function (response) {
 
@@ -49,7 +47,7 @@
 
             table.append(`<thead> <tr><th>First Name</th> <th>Last Name</th><th>Email</th><th>Phone</th> <th>Date of Birth</th></tr></thead><tbody>`);
             for (let n of arrData) {
-                table.append(`<tr><td>${n.userName}</td><td>${n.clientName}</td><td>${n.projectName}</td><td>${n.modules}</td><td>${n.position}</td><td>${n.estimatedclosedate}</td></tr>`);
+                table.append(`<tr><td>${n.firstName}</td><td>${n.LastName}</td><td>${n.email}</td><td>${n.phone}</td><td>${n.dob}</td></tr>`);
             }
             table.append('</tbody>');
 
@@ -65,8 +63,6 @@
                 }
             }
         });
-
-
 
     }
     bindRoles() {
@@ -128,11 +124,11 @@
             let j = 0;
             let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Reporting To</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
             for (let n of arrData) {            
-                options.append($("<option />").val(n.userId).text(n.email));
-                liString += `<li data-original-index="${++j}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${n.email}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+                options.append($("<option />").val(n.userId).text(n.firstName));
+                liString += `<li data-original-index="${++j}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${n.firstName}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
 
             }
-            $(".dropdown-menu.inner")[0].innerHTML = liString
+            //$(".dropdown-menu.inner")[0].innerHTML = liString
             $(".dropdown-menu.inner")[4].innerHTML = liString
             //options.prev()[0].innerHTML = liString
         });
@@ -182,7 +178,53 @@
         }
 
     }
+    bindCandidate() {
+        let objService = new Service();
+        let objajax = objService.ajax("GetCandidateList", objService.POST, "{}");
+        objajax.done((response) => {
+            let arrData = JSON.parse(response.d);
+            let options = $("#drpEmployee");
+            let j = 0;
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">User List</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let n of arrData) {
+                options.append($("<option />").val(n.id).text(n.firstname));
+                liString += `<li data-original-index="${++j}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${n.firstname}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
 
+            }           
+            $(".dropdown-menu.inner")[0].innerHTML = liString
+            
+        });
+
+    }
+    candidateChange() {
+        $('#drpEmployee').on('change', (e, data) => {
+            let objService = new Service();
+            let options = $("#drpEmployee");
+            let id = $("#drpEmployee")[0].value
+            let objajax = objService.ajax("getCandidate", objService.POST, `{id:${id}}`);
+            objajax.done((response) => {
+                let elements = document.forms["sign_up"].getElementsByTagName("input");
+                $("#fname").val(response.d[0].firstname);
+                $("#fname").focus();
+                $("#sname").val(response.d[0].lastname);
+                $("#sname").focus();
+                $("#email").val(response.d[0].emialid);
+                $("#email").focus();
+                $("#phone").val(response.d[0].contact);
+                $("#phone").focus();
+                if (response.d[0].gender == "male")
+                {
+                    $("#male").val(true);
+                }
+                else if (response.d[0].gender == "female"){
+                    $("#female")[0].value = true;
+                }
+            });
+        });
+      
+        
+
+    }
     fillByMemory() {
         if (!!localStorage.usrname)
             $('#username').val(localStorage.usrname);
