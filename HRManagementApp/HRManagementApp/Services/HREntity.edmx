@@ -115,6 +115,7 @@
           <Property Name="isApproved" Type="bit" />
           <Property Name="userId" Type="bigint" />
           <Property Name="approvedBy" Type="bigint" />
+          <Property Name="remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="JobsAppliedFor">
           <Key>
@@ -222,6 +223,7 @@
           </Key>
           <Property Name="gradeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="grade" Type="varchar" MaxLength="50" />
+          <Property Name="position" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="UserManagement">
           <Key>
@@ -473,6 +475,7 @@
           </Key>
           <Property Name="gradeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserManagement">
           <Key>
@@ -572,6 +575,7 @@
           <Property Name="isApproved" Type="Boolean" />
           <Property Name="userId" Type="Int64" />
           <Property Name="approvedBy" Type="Int64" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -772,6 +776,7 @@
           <EntitySetMapping Name="UserGrades">
             <EntityTypeMapping TypeName="HRModel.UserGrade">
               <MappingFragment StoreEntitySet="UserGrades">
+                <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="gradeId" ColumnName="gradeId" />
                 <ScalarProperty Name="grade" ColumnName="grade" />
               </MappingFragment>
@@ -847,6 +852,7 @@
           <EntitySetMapping Name="jobPosts">
             <EntityTypeMapping TypeName="HRModel.jobPost">
               <MappingFragment StoreEntitySet="jobPosts">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="isApproved" ColumnName="isApproved" />

@@ -14,24 +14,38 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="body">
                              <form id="frmCandidateDetails">
-                                  <div class="col-md-12">
-                                        <div class="form-group">
+                                 <%--<div class="col-md-12">
+                                        <div class="form-group" >
                                             <div class="form-line">
-                                                <select name="tagsinput" data-live-search="true" class="form-control show-tick" multiple>
+                                                <select name="tagsinput" id="drpSkills" data-live-search="true" class="form-control show-tick" multiple>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>--%>
+                                 <div class="col-sm-12">
+                                        <label for="skills">Skills</label>
+                                </div>
+                                  <div class="col-md-12">
+                                        <div class="form-group" >
+                                            <div class="form-line">
+                                                <select name="tagsinput"  data-live-search="true" class="form-control show-tick" multiple>
                                                 <option>C#</option>
                                                 <option>.Net</option>
                                                 <option>ExtJs</option>
+                                                <option>MY SQL</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-
+                                 <div class="col-sm-12">
+                                        <label for="nofofpositions">Total Experience</label>
+                                </div>
                                  <div class="col-sm-12">
                                     <input type="number" class="form-control" min="1" name="totalexperience" placeholder="Number of Positions" required autofocus>
                                 </div>
                                 <div class="col-sm-12">
-                                        <label for="skills">Upload your Resume</label>
-                                    </div>
+                                        <label for="resume">Upload your Resume</label>
+                                </div>
                                  <div class="col-sm-12">
                                      <label class="btn btn-default btn-file form-control"> 
                                             <input name="biodata" id="biodata" type="file" hidden>
@@ -50,7 +64,11 @@
     <script src="candidate.js"></script>
     <script src="../Services/service.js"></script>
      <script>
-         let candidate = new Candidate();      
-         candidate.updatecandidate();
+         $(document).ready(function () {
+             let candidate = new Candidate();
+             candidate.updatecandidate();
+             //candidate.bindSkills();
+         });
+         
     </script>
 </asp:Content>

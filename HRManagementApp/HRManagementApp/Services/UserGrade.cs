@@ -16,5 +16,6 @@ namespace HRManagementApp.Services
     {
         public long gradeId { get; set; }
         public string grade { get; set; }
+        public string position { get; set; }
     }
 }

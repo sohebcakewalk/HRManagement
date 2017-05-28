@@ -328,6 +328,56 @@ namespace HRManagementApp.Services
             }
             return userId;
         }
+        [WebMethod(EnableSession = true)]
+        public string skills()
+        {
+            List<Skill> skillList = new List<Skill>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    skillList = db.Skills.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return JsonConvert.SerializeObject(skillList);
+        }
+        [WebMethod(EnableSession = true)]
+        public bool createJob(string jobtitle, string skills, int noofvacancies , string remarks)
+        {
+            bool flagSucess = false;
+            int userId = Convert.ToInt16(HttpContext.Current.Session["UserID"].ToString());
+            jobPost jobpost = new jobPost();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    jobpost.createDate = DateTime.Now;
+                    jobpost.jobTilte = jobtitle;
+                    jobpost.skills = skills;
+                    jobpost.noOfVacancies = noofvacancies;
+                    jobpost.remarks = remarks;
+                    jobpost.userId = userId;
+                    jobpost.isActive = true;
+
+                    db.jobPosts.Add(jobpost);
+                    db.SaveChanges();
+                    flagSucess = true;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            return flagSucess;
+        }
     }
 
 }
