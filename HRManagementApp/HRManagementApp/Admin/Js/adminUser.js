@@ -11,9 +11,19 @@
                 let arrData = $("#sign_in").serializeArray();
                 let objService = new Service();
                 let objajax = objService.ajax("ValidateAdminUser", objService.POST, `{userName: "${arrData[0].value}" ,password:"${arrData[1].value}"}`)
-                objajax.done((response)=> {
-                    //me.rememberMe(arrData[0].value, arrData[1].value);
-                    alert(response.d);
+                objajax.done(function (response) {
+                    
+
+                    if (response.d === true) {
+                        
+                        window.location ='default.aspx';
+
+                    } else {
+
+                        alert('Invalid Username/Password.');
+                    }
+
+
                 });
             }
             e.preventDefault();
@@ -105,10 +115,18 @@
                 let objData = `{fname: "${arrData[0].value}",lname: "${arrData[1].value}" ,email: "${arrData[2].value}",password:"${arrData[3].value}",phNumber:"${arrData[5].value}",gender:"${arrData[6].value}",address:"${arrData[7].value}",dob:"${dob}",grade:"${grade}",branch:"${branch}",role:"${role}",reportingTo:"${reportingTo}"}`
 
                 let objService = new Service();
-                objService.ajax("createAdminUser", objService.POST, objData).then((response)=> {
-                    alert(response.d)
 
-                    if (response.d) { $('#sign_up')[0].reset(); }
+                objService.ajax("createAdminUser", objService.POST, objData).then(function (response) {
+                    
+                    if (response.d === true) {
+
+                        $('#sign_up')[0].reset();
+                        window.location ='login.aspx';
+
+                    } else {
+
+                        alert('Some thing went wrong , please check your internet connection and try again.');
+                    }
                 });
             }
             e.preventDefault();

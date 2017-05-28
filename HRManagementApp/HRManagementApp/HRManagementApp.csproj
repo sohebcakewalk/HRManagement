@@ -74,7 +74,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\adminUser.js" />
+    <Content Include="Admin\Js\adminUser.js" />
     <Content Include="Admin\UserSignup.aspx" />
     <Content Include="Admin\EmployeeProjectManagement.aspx" />
     <Content Include="Admin\Js\EmployeeProjectManagement.js" />
@@ -82,6 +82,7 @@
     <Content Include="Admin\Tasks.aspx" />
     <Content Include="app.js" />
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
+    <Content Include="Lib\Plugins\bootboxalert\bootbox.min.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
     <Content Include="require.js" />
