@@ -12,8 +12,17 @@
                 let objService = new Service();
                 let objajax = objService.ajax("ValidateAdminUser", objService.POST, `{userName: "${arrData[0].value}" ,password:"${arrData[1].value}"}`)
                 objajax.done(function (response) {
-                    //me.rememberMe(arrData[0].value, arrData[1].value);
-                    alert(response.d);
+                    
+
+                    if (response.d === true) {
+                        
+                        window.location ='default.aspx';
+
+                    } else {
+
+                        alert('Invalid Username/Password.');
+                    }
+
                 });
             }
             e.preventDefault();
@@ -95,9 +104,20 @@
 
                 let objService = new Service();
                 objService.ajax("createAdminUser", objService.POST, objData).then(function (response) {
-                    alert(response.d)
+                    
+                    if (response.d === true) {
 
-                    if (response.d) { $('#sign_up')[0].reset(); }
+                        $('#sign_up')[0].reset();
+                        window.location ='login.aspx';
+
+                    } else {
+
+                        alert('Some thing went wrong , please check your internet connection and try again.');
+                    }
+
+
+
+                    
                 });
             }
             e.preventDefault();

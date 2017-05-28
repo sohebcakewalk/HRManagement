@@ -28,7 +28,9 @@
     <!-- Custom Css -->    
     <link href="../Lib/Css/style.css" rel="stylesheet" />
    
-   
+    <script src="../Lib/Plugins/bootboxalert/bootbox.min.js"></script>
+
+
 </head>
 
 <body class="login-page">
@@ -86,7 +88,7 @@
     <!-- Custom Js -->    
     <script src="../Lib/Js/admin.js"></script>    
     <script src="../Lib/Js/pages/examples/sign-in.js"></script>    
-    <script src="adminUser.js"></script>
+    <script src="Js/adminUser.js"></script>
     <script src="../Services/service.js"></script>
     <script>
         let objAdmin = new AdminUser();
