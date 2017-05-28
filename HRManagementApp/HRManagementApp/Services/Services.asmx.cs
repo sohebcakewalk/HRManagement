@@ -20,12 +20,6 @@ namespace HRManagementApp.Services
     [System.Web.Script.Services.ScriptService]
     public class Services : System.Web.Services.WebService
     {
-        [WebMethod]
-        public string getUser()
-        {
-
-            return "sumit";
-        }
         [WebMethod(EnableSession = true)]
         public bool ValidateUser(string userName, string password)
         {
@@ -205,9 +199,6 @@ namespace HRManagementApp.Services
             }
 
         }
-
-
-
         [WebMethod]
         public bool SaveTask(string Taskname, string gitUrl, int timeTaken)
         {
@@ -258,6 +249,42 @@ namespace HRManagementApp.Services
                 throw;
             }
         }
+        [WebMethod(EnableSession = true)]
+        public string UserManagement()
+        {
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    var data = (from a in db.UserManagements
+                                select new Models.UserManage
+                                {
+                                    firstName = a.firstName,
+                                    LastName = a.LastName,
+                                    email = a.email,
+                                    gender = a.gender,
+                                    phone = a.phone,
+                                    dob = a.dob,
+                                    address1 = a.address1,
+                                    address2 = a.address2,
+                                    createDate = a.createDate,
+                                    status = a.status,
+                                    roles = a.roles,
+                                    grade = a.grade,
+                                    gradeChangeDate = a.gradeChangeDate,
+                                    registeredBy = a.registeredBy,
+                                    branchId = a.branchId,
+                                    reportingTo = a.reportingTo
+
+                                });
+                    return JsonConvert.SerializeObject(data.ToList<Models.UserManage>());
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
 
         [WebMethod]
         public bool SaveEmpProjManagement(int userid, int clientid, int projectid, string modules, int branchid, string position, DateTime estimatedclosedate)
@@ -284,15 +311,14 @@ namespace HRManagementApp.Services
                 flagSucess = true;
             }
 
+
             return flagSucess;
 
         }
-
     }
 
 }
 
 
-   
 
 

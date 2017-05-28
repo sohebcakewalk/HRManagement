@@ -84,6 +84,7 @@
     <Content Include="Lib\Js\pages\forms\form-wizard-with_validation.js" />
     <Content Include="MyController.js" />
     <Content Include="packages.config" />
+    <Content Include="require.js" />
     <EntityDeploy Include="Services\HREntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HREntity.Designer.cs</LastGenOutput>

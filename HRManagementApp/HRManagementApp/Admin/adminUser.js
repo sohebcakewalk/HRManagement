@@ -68,6 +68,23 @@
             //options.prev()[0].innerHTML = liString
         });
     }
+    bindReportingTo() {
+        let objService = new Service();
+        let objajax = objService.ajax("UserManagement", objService.POST, "{}");
+        objajax.done(function (response) {
+            let arrData = JSON.parse(response.d);
+            var options = $("#drpReporting");
+            let liString = `<li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Reporting To</span><span class="glyphicon glyphicon- ok check- mark"></span></a></li>`;
+            for (let i = 0; i < arrData.length; i++) {
+                options.append($("<option />").val(arrData[i].userId).text(arrData[i].email));
+                liString += `<li data-original-index="${i + 1}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${arrData[i].email}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+
+            }
+            $(".dropdown-menu.inner")[3].innerHTML = liString
+            //options.prev()[0].innerHTML = liString
+        });
+
+    }
     signUpAdmin() {
 
         $('#sign_up').on('submit', (e, data) => {
