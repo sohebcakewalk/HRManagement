@@ -3,6 +3,7 @@
     }
 
     updatecandidate() {
+        debugger
         $('#frmCandidateDetails').on('submit', (e, data) => {
             let arrData = $("#frmCandidateDetails").serializeArray(); 
             // Get fileuploader path 
@@ -15,9 +16,9 @@
             let objService = new Service();
             let objajax = objService.ajax("updateCandidate", objService.POST, `{skillset: "${arrData[0].value}" ,experience:"${arrData[1].value}" ,biodata:"${filename}"}`)
             objajax.done(function (response) {
-                //$('#hdRecordid').value = "";
-                //$('#totalexperience').value = "";
-                //$('#biodata').value = "";
+                $('#tagsinput').val("");
+                $('#totalexperience').val("");
+                $('#biodata').val("");
                 console.log(response);
             });
             objajax.error(function (response) {

@@ -9,26 +9,18 @@
                    Candidate Details
                 </h2>
             </div>
-
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="body">
                              <form id="frmCandidateDetails">
-                                 <%--<div class="col-md-12">
-                                        <div class="form-group" >
-                                            <div class="form-line">
-                                                <select name="tagsinput" id="drpSkills" data-live-search="true" class="form-control show-tick" multiple>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>--%>
                                  <div class="col-sm-12">
                                         <label for="skills">Skills</label>
                                 </div>
                                   <div class="col-md-12">
                                         <div class="form-group" >
                                             <div class="form-line">
-                                                <select name="tagsinput"  data-live-search="true" class="form-control show-tick" multiple>
+                                                <select name="tagsinput"  id="tagsinput"  data-live-search="true" class="form-control show-tick">
+                                                <option>---Select Skill---</option>
                                                 <option>C#</option>
                                                 <option>.Net</option>
                                                 <option>ExtJs</option>
@@ -41,7 +33,7 @@
                                         <label for="nofofpositions">Total Experience</label>
                                 </div>
                                  <div class="col-sm-12">
-                                    <input type="number" class="form-control" min="1" name="totalexperience" placeholder="Number of Positions" required autofocus>
+                                    <input type="number" class="form-control" min="1" id="totalexperience" name="totalexperience" placeholder="Number of Positions" required autofocus>
                                 </div>
                                 <div class="col-sm-12">
                                         <label for="resume">Upload your Resume</label>

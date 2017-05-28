@@ -392,7 +392,7 @@ namespace HRManagementApp.Services
         {
             bool flagSucess = false;
             int userId = 0;
-            if (Session["user"] != null)
+            if (Session["adminuser"] != null)
             {
 
                 string currentUser = Session["adminuser"].ToString();
