@@ -117,5 +117,67 @@ namespace HRManagementApp.Services
 
             return flag;
         }
+
+
+        [WebMethod]
+        public string roles()
+        {
+            List<UserRole> roleList = new List<UserRole>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    roleList = db.UserRoles.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(roleList);
+        }
+        [WebMethod]
+        public string branches()
+        {
+            List<Branch> branchList = new List<Branch>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    branchList = db.Branches.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(branchList);
+           
+        }
+        [WebMethod]
+        public string grades()
+        {
+            List<UserGrade> gradeList = new List<UserGrade>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    gradeList = db.UserGrades.ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+          
+            return JsonConvert.SerializeObject(gradeList);
+        }
+
+
+      
+
     }
 }
