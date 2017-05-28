@@ -71,9 +71,10 @@
     <script src="../Services/service.js"></script>
      <script>
          $(document).ready(function () {
-             let candidate = new Candidate();
-             candidate.updatecandidate();
+             
              //candidate.bindSkills();
          });
+         let candidate = new Candidate();
+         candidate.createjob();
     </script>
 </asp:Content>

@@ -17,12 +17,20 @@
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
+                console.log(response);
+            });
+            objajax.error(function (response) {
+                //$('#tagsinput').value = "";
+                //$('#totalexperience').value = "";
+                //$('#biodata').value = "";
+                console.log(response);
             });
             e.preventDefault();
             return false;
         })
     }
     createjob() {
+        debugger
         $('#frmJobCreation').on('submit', (e, data) => {
             let arrData = $("#frmJobCreation").serializeArray();
             let objService = new Service();
@@ -31,6 +39,13 @@
                 //$('#tagsinput').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
+                console.log(response);
+            });
+            objajax.error(function (response) {
+                //$('#tagsinput').value = "";
+                //$('#totalexperience').value = "";
+                //$('#biodata').value = "";
+                console.log(response);
             });
             e.preventDefault();
             return false;

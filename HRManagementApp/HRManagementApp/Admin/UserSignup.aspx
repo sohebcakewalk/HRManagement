@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <script src="../Lib/Plugins/jquery/jquery.min.js"></script>
-    <script src="adminUser.js"></script>
+    <script src="JS/adminUser.js"></script>
     <script src="../Services/service.js"></script>
     <script>
         $(document).ready(function () {
@@ -10,6 +10,7 @@
             objAdmin.bindRoles();
             objAdmin.bindGrades();
             objAdmin.bindBranch();
+            objAdmin.bindReportingTo();
         });
     </script>
 </asp:Content>
@@ -149,10 +150,10 @@
                                     <div class="form-line">
                                         <select class="form-control show-tick"  id="drpReporting">
                                             <option value="">-- Reporting To --</option>
-                                            <option value="Sr. Developer">Sr. Developer</option>
+                                            <%--<option value="Sr. Developer">Sr. Developer</option>
                                             <option value="Jr. Developer">Jr. Developer</option>
                                             <option value="Team Leader">Team Leader</option>
-                                            <option value="Project Manager">Project Manager</option>
+                                            <option value="Project Manager">Project Manager</option>--%>
                                         </select>
                                     </div>
                                 </div>

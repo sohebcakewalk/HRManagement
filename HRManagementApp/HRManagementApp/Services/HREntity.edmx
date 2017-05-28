@@ -547,21 +547,9 @@
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="UserSkillsets" EntityType="Self.UserSkillset" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
-          <EntitySet Name="Tasks" EntityType="HRModel.Task" />
           <EntitySet Name="jobPosts" EntityType="HRModel.jobPost" />
+          <EntitySet Name="Tasks" EntityType="HRModel.Task" />
         </EntityContainer>
-        <EntityType Name="Task">
-          <Key>
-            <PropertyRef Name="taskId" />
-          </Key>
-          <Property Name="taskId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="gitUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="taskName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="timeTaken" Type="Int32" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="completedDate" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="jobPost">
           <Key>
             <PropertyRef Name="jobId" />
@@ -576,6 +564,18 @@
           <Property Name="userId" Type="Int64" />
           <Property Name="approvedBy" Type="Int64" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gitUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="0" />
+          <Property Name="taskName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="timeTaken" Type="Int32" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="completedDate" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -836,19 +836,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="HRModel.Task">
-              <MappingFragment StoreEntitySet="Tasks">
-                <ScalarProperty Name="completedDate" ColumnName="completedDate" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="timeTaken" ColumnName="timeTaken" />
-                <ScalarProperty Name="taskName" ColumnName="taskName" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="gitUrl" ColumnName="gitUrl" />
-                <ScalarProperty Name="taskId" ColumnName="taskId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="jobPosts">
             <EntityTypeMapping TypeName="HRModel.jobPost">
               <MappingFragment StoreEntitySet="jobPosts">
@@ -862,6 +849,19 @@
                 <ScalarProperty Name="skills" ColumnName="skills" />
                 <ScalarProperty Name="jobTilte" ColumnName="jobTilte" />
                 <ScalarProperty Name="jobId" ColumnName="jobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="HRModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="completedDate" ColumnName="completedDate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="timeTaken" ColumnName="timeTaken" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="gitUrl" ColumnName="gitUrl" />
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
