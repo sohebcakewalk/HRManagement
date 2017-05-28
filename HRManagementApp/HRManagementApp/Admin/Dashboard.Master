@@ -24,31 +24,31 @@
     <link href="../Lib/Plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Colorpicker Css -->
-    <link href="../Lib/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 
     <!-- noUISlider Css -->
-    <link href="../Lib/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/nouislider/nouislider.min.css" rel="stylesheet" />
 
     <!-- Dropzone Css -->
-    <link href="../Lib/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="../Lib/Plugins/dropzone/dropzone.css" rel="stylesheet">
 
     <!-- Multi Select Css -->
-    <link href="../Lib/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+    <link href="../Lib/Plugins/multi-select/css/multi-select.css" rel="stylesheet">
 
     <!-- Bootstrap Spinner Css -->
-    <link href="../Lib/plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+    <link href="../Lib/Plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
 
     <!-- Bootstrap Tagsinput Css -->
-    <link href="../Lib/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="../Lib/Plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
 
     <!-- Custom Css -->
     <link href="../Lib/Css/style.css" rel="stylesheet" />
 
     <!-- Bootstrap Select Css -->
-    <link href="../Lib/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- Bootstrap Material Datetime Picker Css -->
-    <link href="../Lib/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <link href="../Lib/Plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../Lib/Css/themes/all-themes.css" rel="stylesheet" />
@@ -817,6 +817,7 @@
          $(document).ready(function () {
              $('#txtDate').bootstrapMaterialDatePicker({ time: false});
          });
+
     </script> 
 
     <!-- Bootstrap Core Js -->
@@ -834,9 +835,9 @@
     <!-- Jquery CountTo Plugin Js -->
     <script src="../Lib/Plugins/jquery-countto/jquery.countTo.js"></script>
 
-   <%-- <!-- Morris Plugin Js -->
+    <!-- Morris Plugin Js -->
     <script src="../Lib/Plugins/raphael/raphael.min.js"></script>
-    <script src="../Lib/Plugins/morrisjs/morris.js"></script>--%>
+    <script src="../Lib/Plugins/morrisjs/morris.js"></script>
 
     <!-- Custom Js -->
     <script src="../Lib/Js/admin.js"></script>
@@ -844,12 +845,12 @@
 
 
     <!-- Jquery Validation Plugin Css -->
-    <script src="../Lib/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="../Lib/Plugins/jquery-validation/jquery.validate.js"></script>
 
     <script src="../Lib/Js/pages/forms/form-validation.js"></script>
 
     <!-- Bootstrap Tags Input Plugin Js -->
-    <script src="../Lib/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="../Lib/Plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
     <!-- Moment Plugin Js -->
     <script src="../Lib/Plugins/momentjs/moment.js"></script>
@@ -859,5 +860,15 @@
 
     <%--<!-- Demo Js -->
     <script src="../Lib/Js/demo.js"></script>--%>
+
+    <script src="../Lib/Plugins/jquery-datatable/jquery.dataTables.js"></script>    
+    <script src="../Lib/Plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../Lib/Plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 </body>
 </html>

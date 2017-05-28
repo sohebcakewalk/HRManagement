@@ -6,7 +6,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using Newtonsoft.Json;
 using HRManagementApp.Services;
-
+using HRManagementApp.Models;
 
 namespace HRManagementApp.Services
 {
@@ -103,7 +103,64 @@ namespace HRManagementApp.Services
 
         }
 
+        [WebMethod]
+        public List<ModelEmpProjManagement> GetEmpProjManagementList()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = (from a in db.EmployeeProjectManagements
+                                select new ModelEmpProjManagement
+                                {
+                                    id = a.id,
+                                    useid = a.useid,
+                                    clientid = a.clientid,
+                                    projectid = a.projectid,
+                                    modules = a.modules,
+                                    branchid = a.branchid,
+                                    position = a.position,
+                                    estimatedclosedate = a.estimatedclosedate,
+                                    createddate = DateTime.UtcNow
 
+                });
+                    return data.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [WebMethod]
+        public bool SaveEmpProjManagement(int userid, int clientid, int projectid,string modules,int branchid, string position, DateTime estimatedclosedate)
+        {
+            bool flagSucess = false;
+
+            using (HREntities db = new HREntities())
+            {
+                EmployeeProjectManagement tsk = new EmployeeProjectManagement();
+
+                tsk.useid = userid;
+                tsk.clientid = clientid;
+                tsk.projectid = projectid;
+                tsk.modules = modules;
+                tsk.branchid = branchid;
+                tsk.position = position;
+                tsk.estimatedclosedate = estimatedclosedate;
+                tsk.status = "Added";
+                tsk.updatedby = 2;
+                tsk.createddate = DateTime.UtcNow;
+
+                db.EmployeeProjectManagements.Add(tsk);
+                db.SaveChanges();
+                flagSucess = true;
+            }
+
+            return flagSucess;
+
+        }
 
 
     }
