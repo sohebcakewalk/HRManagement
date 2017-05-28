@@ -6,6 +6,7 @@
         $('#frmCandidateDetails').on('submit', (e, data) => {
             let arrData = $("#frmCandidateDetails").serializeArray(); 
             // Get fileuploader path 
+            //let hrid = $('#hdRecordid').val();
             let filename = '';
             let biodata = document.getElementById("biodata");
             if (biodata) {
@@ -14,7 +15,7 @@
             let objService = new Service();
             let objajax = objService.ajax("updateCandidate", objService.POST, `{skillset: "${arrData[0].value}" ,experience:"${arrData[1].value}" ,biodata:"${filename}"}`)
             objajax.done(function (response) {
-                //$('#tagsinput').value = "";
+                //$('#hdRecordid').value = "";
                 //$('#totalexperience').value = "";
                 //$('#biodata').value = "";
                 console.log(response);
@@ -30,22 +31,27 @@
         })
     }
     createjob() {
-        $('#frmJobCreation').on('submit', (e, data) => {
-            let arrData = $("#frmJobCreation").serializeArray();
-            let objService = new Service();
-            let objajax = objService.ajax("createJob", objService.POST, `{jobtitle: "${arrData[0].value}" ,skills:"${arrData[1].value}" ,noofvacancies:"${arrData[2].value}",remarks:"${arrData[3].value}"}`)
-            objajax.done(function (response) {
-                $('#tagsinput').val("");
-                $('#totalexperience').val("");
-                $('#biodata').val("");
-                console.log(response);
-            });
-            objajax.error(function (response) {
-                console.log(response);
-            });
-            e.preventDefault();
-            return false;
-        })
+        let jobtitle = $("#jobtitle");
+        let skills = $("#skills")
+        let noofpositions = $("#noofpositions");
+        let requirements = $("#requirements");
+        let isActive = $('#isactive')[0].checked
+        let hrid = $('#hdRecordid').val();
+        let data = `{recordid: "${hrid}" ,jobtitle: "${jobtitle.val()}" ,skills:"${skills.val()}" ,noofvacancies:"${noofpositions.val()}",remarks:"${requirements.val()}",isActive:${isActive}}`
+        let objService = new Service();
+
+        let objajax = objService.ajax("createJob", objService.POST, data)
+        objajax.done(function (response) {
+            $('#jobtitle').val("");
+            $('#skills').val("");
+            $('#requirements').val("");
+            $('#noofpositions').val("");
+            new Candidate().GetJobListing()
+            console.log(response);
+        });
+        objajax.error(function (response) {
+            console.log(response);
+        });
     }
     bindSkills() {
         let objService = new Service();
@@ -65,18 +71,18 @@
     }
     GetJobListing() {
         let objService = new Service();
-        let objajax = objService.ajax("GetTaskList", objService.POST, `{}`)
+        let objajax = objService.ajax("GetJobs", objService.POST, `{}`)
         objajax.then(function (response) {
-            
+
             let table = $("#tblJobs");
 
             table.find("tr:gt(0)").remove();; // empty table            
 
             table.append('<thead> <tr><th>Id</th><th>Job Title</th> <th>Skills</th><th>Experience Needed</th><th></th></tr></thead><tbody>');
-
-            for (let n of response.d) {
-                let strEditanchor = `new Tasks().editJob( '${n.JobTitle}','${n.skills}','${n.noOfVacancies}');`;
-                table.append(`<tr><td>${n.jobId}</td><td>${n.JobTitle}</td><td>${n.skills}</td><td>${n.noOfVacancies}</td><td ><a style='cursor:pointer' onclick="${strEditanchor}">Edit</a></td></tr>`);
+            var data = JSON.parse(response.d);
+            for (let n of data) {
+                let strEditanchor = `new Candidate().editJob( '${n.jobId}','${n.jobTilte}','${n.skills}','${n.noOfVacancies}','${n.remarks}','${n.isActive}');`;
+                table.append(`<tr><td>${n.jobId}</td><td>${n.jobTilte}</td><td>${n.skills}</td><td>${n.noOfVacancies}</td><td ><a style='cursor:pointer' onclick="${strEditanchor}">Edit</a></td></tr>`);
             }
             table.append('</tbody>');
             if ($.fn.dataTable.isDataTable(table) == false) {
@@ -92,8 +98,30 @@
             }
 
         });
+    }
+    editJob(jobid, jobtitle, skills, noofpositions, descriptions, isactive) {
+
+        let hdEdit = $("#hdRecordid");
+        let txtjobtitle = $('#jobtitle');
+        let txtskills = $('#skills');
+        let txtrequirements = $('#requirements');
+        let txtnoofpositions = $('#noofpositions');
+        let chkIsActive = $('#isactive')[0];
+
+        isactive = (isactive === 'true');
+        hdEdit.val(jobid);
+        txtjobtitle.val(jobtitle);
+        txtskills.val(skills);
+        txtnoofpositions.val(noofpositions);
+        txtrequirements.val(descriptions);
+        chkIsActive.checked = isactive;
 
 
+        txtjobtitle.focus();
 
+        txtskills.focus();
+
+        txtnoofpositions.focus();
+        txtrequirements.focus();
     }
 }

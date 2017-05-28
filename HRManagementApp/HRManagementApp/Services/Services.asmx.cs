@@ -33,7 +33,7 @@ namespace HRManagementApp.Services
                     if (user.Count > 0)
                     {
                         flag = true;
-                        Session["candidateuser"] = string.Format("{0}|{1}",user.FirstOrDefault().id, user.FirstOrDefault().emialid);
+                        Session["candidateuser"] = string.Format("{0}|{1}", user.FirstOrDefault().id, user.FirstOrDefault().emialid);
                     }
                 }
                 catch (Exception)
@@ -52,7 +52,7 @@ namespace HRManagementApp.Services
                 try
                 {
                     var user = db.UserManagements.Where(x => x.email == userName && x.password == password);
-                    if (user.Any ())
+                    if (user.Any())
                     {
                         flag = true;
                         Session["adminuser"] = string.Format("{0}|{1}", user.FirstOrDefault().userId, user.FirstOrDefault().email);
@@ -90,8 +90,9 @@ namespace HRManagementApp.Services
         }
 
 
+
         [WebMethod(EnableSession = true)]
-        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender)
+        public bool createAdminUser(string fname, string lname, string email, string password, string phNumber, string gender, string address, string dob, string grade, string branch, string role, string reportingTo)
         {
             Boolean flag = false;
             using (HREntities db = new HREntities())
@@ -99,7 +100,7 @@ namespace HRManagementApp.Services
                 try
                 {
                     var Candidate = db.Set<UserManagement>();
-                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender });
+                    Candidate.Add(new UserManagement { firstName = fname, LastName = lname, email = email, password = password, phone = phNumber, gender = gender, address1 = address, dob = Convert.ToDateTime(dob), grade = grade, branchId = Convert.ToInt32(branch), roles = role, reportingTo = Convert.ToInt32(reportingTo) });
                     db.SaveChanges();
                     flag = true;
                 }
@@ -142,7 +143,7 @@ namespace HRManagementApp.Services
                     branchList = db.Branches.ToList();
 
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     throw;
                 }
@@ -205,7 +206,7 @@ namespace HRManagementApp.Services
 
 
         [WebMethod(EnableSession = true)]
-        public bool SaveTask(string Taskname, string gitUrl, int timeTaken,string recordid)
+        public bool SaveTask(string Taskname, string gitUrl, int timeTaken, string recordid)
         {
             bool flagSucess = false;
 
@@ -236,7 +237,8 @@ namespace HRManagementApp.Services
 
 
                     db.Tasks.Add(tsk);
-                }else
+                }
+                else
                 {
                     long Taskid = long.Parse(recordid);
 
@@ -247,8 +249,6 @@ namespace HRManagementApp.Services
                         d.taskName = Taskname;
                         d.gitUrl = gitUrl;
                         d.timeTaken = timeTaken;
-
-
                     }
 
                 }
@@ -272,7 +272,7 @@ namespace HRManagementApp.Services
                 {
                     var data = (from a in db.EmployeeProjectManagements
                                 join m1 in db.Clients on a.clientid equals m1.clientId
-                                join m2 in db.Projects on a.projectid equals m2.projectId                                
+                                join m2 in db.Projects on a.projectid equals m2.projectId
                                 select new ModelEmpProjManagement
                                 {
                                     id = a.id,
@@ -306,6 +306,7 @@ namespace HRManagementApp.Services
                     var data = (from a in db.UserManagements
                                 select new Models.UserManage
                                 {
+
                                     userId = a.userId,
                                     firstName = a.firstName,
                                     LastName = a.LastName,
@@ -345,8 +346,8 @@ namespace HRManagementApp.Services
                 {
                     EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
-                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId ).FirstOrDefault();
-                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId ).FirstOrDefault();
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId).FirstOrDefault();
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId).FirstOrDefault();
 
                     tsk.userid = userid;
                     tsk.clientid = cId;
@@ -370,7 +371,7 @@ namespace HRManagementApp.Services
 
                 throw;
             }
-            
+
             return flagSucess;
 
         }
@@ -382,7 +383,7 @@ namespace HRManagementApp.Services
             using (HREntities db = new HREntities())
             {
                 candidate = db.Candidates.Where(x => x.id == id).ToList();
-                
+
             }
             return candidate;
         }
@@ -403,7 +404,7 @@ namespace HRManagementApp.Services
                 }
             }
 
-            
+
             Candidate candidate = new Candidate();
             using (HREntities db = new HREntities())
             {
@@ -487,9 +488,10 @@ namespace HRManagementApp.Services
             return JsonConvert.SerializeObject(moduleList);
         }
         [WebMethod(EnableSession = true)]
-        public bool createJob(string jobtitle, string skills, int noofvacancies , string remarks)
+        public bool createJob(string recordid, string jobtitle, string skills, int noofvacancies, string remarks, bool  isActive)
         {
             bool flagSucess = false;
+            //bool isActiveTest = true;
             int userId = 0;
             if (Session["adminuser"] != null)
             {
@@ -502,23 +504,41 @@ namespace HRManagementApp.Services
 
                 }
             }
-            jobPost jobpost = new jobPost();
+
+            
             using (HREntities db = new HREntities())
             {
+
                 try
                 {
-                    
-                    jobpost.createDate = DateTime.Now;
-                    jobpost.jobTilte = jobtitle;
-                    jobpost.skills = skills;
-                    jobpost.noOfVacancies = noofvacancies;
-                    jobpost.remarks = remarks;
-                    jobpost.userId = userId;
-                    jobpost.isActive = true;
+                    jobPost jobpost = new jobPost();
+                    if (recordid == "")
+                    {
+                        jobpost.createDate = DateTime.Now;
+                        jobpost.jobTilte = jobtitle;
+                        jobpost.skills = skills;
+                        jobpost.noOfVacancies = noofvacancies;
+                        jobpost.remarks = remarks;
+                        jobpost.userId = userId;
+                        jobpost.isActive = isActive;
+                        db.jobPosts.Add(jobpost);
 
-                    db.jobPosts.Add(jobpost);
-                    db.SaveChanges();
+                    }
+                    else {
+
+                        long id = long.Parse(recordid);
+                        jobpost = db.jobPosts.Where(x => x.jobId == id).SingleOrDefault();
+                        jobpost.createDate = DateTime.Now;
+                        jobpost.jobTilte = jobtitle;
+                        jobpost.skills = skills;
+                        jobpost.noOfVacancies = noofvacancies;
+                        jobpost.remarks = remarks;
+                        jobpost.userId = userId;
+                        jobpost.isActive = isActive;
+                        
+                    }
                     flagSucess = true;
+                    db.SaveChanges();
                 }
                 catch (Exception)
                 {
@@ -528,6 +548,28 @@ namespace HRManagementApp.Services
 
             }
             return flagSucess;
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public string GetJobs()
+        {
+            try
+            {
+                using (HREntities db = new HREntities())
+                {
+                    var data = db.jobPosts.ToList();
+                    jobPost obj = new jobPost();
+                    return JsonConvert.SerializeObject(data);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
     }
 
