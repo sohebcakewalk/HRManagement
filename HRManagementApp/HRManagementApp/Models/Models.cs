@@ -24,21 +24,25 @@ namespace HRManagementApp.Models
         public long ? UserId { get; set; }
         public DateTime ? CompletedDate { get; set; }
         public long ? TimeTaken { get; set; }
-    }
+    }    
 
     public class ModelEmpProjManagement
     {
-        public int id { get; set; }
-        public Nullable<int> useid { get; set; }
-        public Nullable<int> clientid { get; set; }
-        public Nullable<int> projectid { get; set; }
+        public long id { get; set; }
+        public Nullable<long> userid { get; set; }
+        public Nullable<long> clientid { get; set; }
+        public Nullable<long> projectid { get; set; }
         public string modules { get; set; }
-        public Nullable<int> branchid { get; set; }
+        public Nullable<long> branchid { get; set; }
         public string position { get; set; }
         public Nullable<System.DateTime> estimatedclosedate { get; set; }
         public string status { get; set; }
-        public Nullable<int> updatedby { get; set; }
+        public Nullable<long> updatedby { get; set; }
         public Nullable<System.DateTime> createddate { get; set; }
+
+        public string userName { get; set; }
+        public string clientName { get; set; }
+        public string projectName { get; set; }        
     }
     public class UserManage
     {
@@ -52,7 +56,7 @@ namespace HRManagementApp.Models
         public string address1 { get; set; }
         public string address2 { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
-        public string status { get; set; }
+        public bool status { get; set; }
         public string roles { get; set; }
         public string grade { get; set; }
         public Nullable<System.DateTime> gradeChangeDate { get; set; }

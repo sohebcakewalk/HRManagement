@@ -14,17 +14,27 @@ class EmpProjManagement {
 
             // console.log(response.d);
             let arrData = JSON.parse(response.d);
-            $('#tblEmpProj').append('<thead> <tr><th>UserId</th> <th>Modules</th></tr></thead><tbody>');
-            for (let n of arrData) {
-                $('#tblEmpProj').append(`<tr><td>${n.useid}</td><td>${n.modules}</td></tr>`);
-            }
-            $('#tblTasks').append('</tbody>');
 
-            if ($('.sorting_asc')[0] == undefined) {
+            let table = $("#tblEmpProj");
+            table.find("tr:gt(0)").remove();; // empty table
+
+
+            table.append('<thead> <tr><th>UserId</th> <th>Modules</th></tr></thead><tbody>');
+            for (let n of arrData) {
+                table.append(`<tr><td>${n.useid}</td><td>${n.modules}</td></tr>`);
+            }
+            table.append('</tbody>');
+
+            //if ($('.sorting_asc')[0] == undefined) {
+            if ($.fn.dataTable.isDataTable(table) == false) {
+                try {
                 //$('#tblTasks').DataTable();
                 $('.js-basic-example').DataTable({
                     responsive: true
-                });
+                    });
+                } catch (e) {
+
+                }
             }
         });
 
@@ -132,8 +142,8 @@ class EmpProjManagement {
             let liString = ``;
             let j = 0;
             for (let i of arrData) {
-                options.append($("<option />").val(i.gradeId).text(i.grade));
-                liString += `<li data-original-index="${++j}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${i.grade}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
+                options.append($("<option />").val(i.gradeId).text(i.position));
+                liString += `<li data-original-index="${++j}"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">${i.position}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>`;
 
             }
             $(".dropdown-menu.inner")[3].innerHTML = liString;

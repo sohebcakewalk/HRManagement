@@ -23,5 +23,6 @@ namespace HRManagementApp.Services
         public Nullable<bool> isApproved { get; set; }
         public Nullable<long> userId { get; set; }
         public Nullable<long> approvedBy { get; set; }
+        public string remarks { get; set; }
     }
 }

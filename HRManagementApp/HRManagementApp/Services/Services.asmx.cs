@@ -271,12 +271,16 @@ namespace HRManagementApp.Services
                 using (HREntities db = new HREntities())
                 {
                     var data = (from a in db.EmployeeProjectManagements
+                                join m1 in db.Clients on a.clientid equals m1.clientId
+                                join m2 in db.Projects on a.projectid equals m2.projectId                                
                                 select new ModelEmpProjManagement
                                 {
                                     id = a.id,
-                                    useid = a.useid,
+                                    userid = a.userid,
                                     clientid = a.clientid,
+                                    clientName = m1.clientname,
                                     projectid = a.projectid,
+                                    projectName = m2.projectName,
                                     modules = a.modules,
                                     branchid = a.branchid,
                                     position = a.position,
@@ -312,7 +316,7 @@ namespace HRManagementApp.Services
                                     address1 = a.address1,
                                     address2 = a.address2,
                                     createDate = a.createDate,
-                                    status = a.status,
+                                    status = true,
                                     roles = a.roles,
                                     grade = a.grade,
                                     gradeChangeDate = a.gradeChangeDate,
@@ -341,14 +345,14 @@ namespace HRManagementApp.Services
                 {
                     EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
-                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => new { a.clientId });
-                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => new { a.branchId });
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => a.clientId ).FirstOrDefault();
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => a.branchId ).FirstOrDefault();
 
-                    tsk.useid = userid;
-                    tsk.clientid = int.Parse(cId.ToString());
+                    tsk.userid = userid;
+                    tsk.clientid = cId;
                     tsk.projectid = projectid;
                     tsk.modules = modules;
-                    tsk.branchid = int.Parse(bId.ToString()); ;
+                    tsk.branchid = bId;
                     tsk.position = position;
                     tsk.estimatedclosedate = estimatedclosedate;
                     tsk.status = "Added";
