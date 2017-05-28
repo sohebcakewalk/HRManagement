@@ -262,8 +262,9 @@ namespace HRManagementApp.Services
 
             return flagSucess;
         }
+
         [WebMethod(EnableSession = true)]
-        public List<ModelEmpProjManagement> GetEmpProjManagementList()
+        public string GetEmpProjManagementList()
         {
             try
             {
@@ -283,7 +284,7 @@ namespace HRManagementApp.Services
                                     createddate = DateTime.UtcNow
 
                                 });
-                    return data.ToList();
+                    return JsonConvert.SerializeObject(data.ToList());
                 }
             }
             catch (Exception)
@@ -301,6 +302,7 @@ namespace HRManagementApp.Services
                     var data = (from a in db.UserManagements
                                 select new Models.UserManage
                                 {
+                                    userId = a.userId,
                                     firstName = a.firstName,
                                     LastName = a.LastName,
                                     email = a.email,
@@ -329,7 +331,7 @@ namespace HRManagementApp.Services
         }
 
         [WebMethod(EnableSession = true)]
-        public bool SaveEmpProjManagement(int userid, int clientid, int projectid, string modules, int branchid, string position, DateTime estimatedclosedate)
+        public bool SaveEmpProjManagement(int userid, int projectid, string modules, string position, DateTime estimatedclosedate)
         {
             bool flagSucess = false;
 
@@ -339,11 +341,14 @@ namespace HRManagementApp.Services
                 {
                     EmployeeProjectManagement tsk = new EmployeeProjectManagement();
 
+                    var cId = db.Projects.Where(a => a.projectId == projectid).Select(a => new { a.clientId });
+                    var bId = db.UserManagements.Where(a => a.userId == userid).Select(a => new { a.branchId });
+
                     tsk.useid = userid;
-                    tsk.clientid = clientid;
+                    tsk.clientid = int.Parse(cId.ToString());
                     tsk.projectid = projectid;
                     tsk.modules = modules;
-                    tsk.branchid = branchid;
+                    tsk.branchid = int.Parse(bId.ToString()); ;
                     tsk.position = position;
                     tsk.estimatedclosedate = estimatedclosedate;
                     tsk.status = "Added";
@@ -354,7 +359,6 @@ namespace HRManagementApp.Services
                     db.SaveChanges();
                     flagSucess = true;
                 }
-
             }
             catch (Exception)
             {
@@ -366,6 +370,46 @@ namespace HRManagementApp.Services
             return flagSucess;
 
         }
+
+        [WebMethod]
+        public string projectList()
+        {
+            List<Project> projectList = new List<Project>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    projectList = db.Projects.OrderBy(a=>a.projectName).ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(projectList);
+        }
+
+        [WebMethod]
+        public string moduleList()
+        {
+            List<ProjectModule> moduleList = new List<ProjectModule>();
+            using (HREntities db = new HREntities())
+            {
+                try
+                {
+                    moduleList = db.ProjectModules.OrderBy(a => a.modulename).ToList();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return JsonConvert.SerializeObject(moduleList);
+        }
+
+
     }
 
 }
