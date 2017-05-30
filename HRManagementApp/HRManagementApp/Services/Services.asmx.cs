@@ -560,7 +560,7 @@ namespace HRManagementApp.Services
             {
                 using (HREntities db = new HREntities())
                 {
-                    var data = db.jobPosts.ToList();
+                    var data = db.jobPosts.Where(x=>x.isActive==true).ToList();
                     jobPost obj = new jobPost();
                     return JsonConvert.SerializeObject(data);
                 }
