@@ -33,7 +33,7 @@
                                         <label for="nofofpositions">Total Experience</label>
                                 </div>
                                  <div class="col-sm-12">
-                                    <input type="number" class="form-control" min="1" id="totalexperience" name="totalexperience" placeholder="Number of Positions" required autofocus>
+                                    <input type="number" class="form-control" min="1" id="totalexperience" name="totalexperience" placeholder="Total Experience" required autofocus>
                                 </div>
                                 <div class="col-sm-12">
                                         <label for="resume">Upload your Resume</label>

@@ -15,7 +15,11 @@
                 objajax.done((response) => {
                     //me.rememberMe(arrData[0].value, arrData[1].value);
                     //alert(response.d);
-                    window.location = "default.aspx";
+                    if (response.d)
+                        window.location = "default.aspx";
+                    else {
+                        alert("Invalid User");
+                    }
                 });
             }
             e.preventDefault();

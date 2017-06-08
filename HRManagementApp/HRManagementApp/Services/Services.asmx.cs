@@ -432,6 +432,8 @@ namespace HRManagementApp.Services
             }
             return flagSucess;
         }
+
+        [WebMethod(EnableSession = true)]
         public string projectList()
         {
             List<Project> projectList = new List<Project>();

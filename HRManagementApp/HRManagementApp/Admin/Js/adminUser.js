@@ -14,7 +14,7 @@
                 objajax.done((response) => {
                     if (response.d === true) {
 
-                        window.location = 'default.aspx';
+                        window.location = 'JobCreate.aspx';
 
                     } else {
 
